@@ -14,6 +14,10 @@
 		42F8C70B2AB9E81A00A65B4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F8C7092AB9E81A00A65B4D /* LaunchScreen.storyboard */; };
 		42F8C7142AB9EF3B00A65B4D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 42F8C7132AB9EF3B00A65B4D /* SnapKit */; };
 		42F8C7172AB9EF6000A65B4D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 42F8C7162AB9EF6000A65B4D /* Then */; };
+		42F8C7192AB9FA9D00A65B4D /* soundhelix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */; };
+		42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71B2AB9FDB000A65B4D /* AudioService.swift */; };
+		42F8C71E2ABA018900A65B4D /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71D2ABA018900A65B4D /* Source.swift */; };
+		42F8C7202ABA02F800A65B4D /* AudioFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71F2ABA02F800A65B4D /* AudioFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		42F8C7072AB9E81A00A65B4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42F8C70A2AB9E81A00A65B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42F8C70C2AB9E81A00A65B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundhelix.mp3; sourceTree = "<group>"; };
+		42F8C71B2AB9FDB000A65B4D /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		42F8C71D2ABA018900A65B4D /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		42F8C71F2ABA02F800A65B4D /* AudioFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFormat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +69,39 @@
 				42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */,
 				42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */,
 				42F8C7022AB9E81900A65B4D /* ViewController.swift */,
+				42F8C71B2AB9FDB000A65B4D /* AudioService.swift */,
+				42F8C7212ABA031C00A65B4D /* Model */,
+				42F8C7222ABA033900A65B4D /* Resource */,
+			);
+			path = MiPS;
+			sourceTree = "<group>";
+		};
+		42F8C71A2AB9FACC00A65B4D /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		42F8C7212ABA031C00A65B4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42F8C71D2ABA018900A65B4D /* Source.swift */,
+				42F8C71F2ABA02F800A65B4D /* AudioFormat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		42F8C7222ABA033900A65B4D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
 				42F8C7072AB9E81A00A65B4D /* Assets.xcassets */,
 				42F8C7092AB9E81A00A65B4D /* LaunchScreen.storyboard */,
 				42F8C70C2AB9E81A00A65B4D /* Info.plist */,
+				42F8C71A2AB9FACC00A65B4D /* Music */,
 			);
-			path = MiPS;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +172,7 @@
 			files = (
 				42F8C70B2AB9E81A00A65B4D /* LaunchScreen.storyboard in Resources */,
 				42F8C7082AB9E81A00A65B4D /* Assets.xcassets in Resources */,
+				42F8C7192AB9FA9D00A65B4D /* soundhelix.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */,
 				42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */,
+				42F8C7202ABA02F800A65B4D /* AudioFormat.swift in Sources */,
 				42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */,
+				42F8C71E2ABA018900A65B4D /* Source.swift in Sources */,
 				42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

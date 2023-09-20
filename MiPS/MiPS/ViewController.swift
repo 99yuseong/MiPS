@@ -29,6 +29,7 @@ final class ViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
+        soundSourcePositioning()
     }
     
     // MARK: - Configure
@@ -61,9 +62,9 @@ extension ViewController {
             format: DefaultSource.soundHelix.format
         )
         
-//        AudioService.shared.playExtSource(
-//            from: DefaultSource.soundHelix.url
-//        )
+        //        AudioService.shared.playExtSource(
+        //            from: DefaultSource.soundHelix.url
+        //        )
     }
 }
 

@@ -10,6 +10,13 @@
 		42505F6E2ABB3CB800B8217F /* CSVImporter in Frameworks */ = {isa = PBXBuildFile; productRef = 42505F6D2ABB3CB800B8217F /* CSVImporter */; };
 		42505F712ABB3D1100B8217F /* HRIR_L.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42505F702ABB3D1100B8217F /* HRIR_L.csv */; };
 		42505F732ABB3EC300B8217F /* HRTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42505F722ABB3EC300B8217F /* HRTF.swift */; };
+		42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B52ABC14CC00D341F3 /* HRIR.swift */; };
+		42DB85B82ABC362400D341F3 /* Amplitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B72ABC362400D341F3 /* Amplitude.swift */; };
+		42DB85BA2ABC369F00D341F3 /* HRIR_R.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42DB85B92ABC369F00D341F3 /* HRIR_R.csv */; };
+		42DB85BC2ABC36B100D341F3 /* SourcePosition.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42DB85BB2ABC36B100D341F3 /* SourcePosition.csv */; };
+		42DB85BE2ABC6E3800D341F3 /* HeaderPositioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85BD2ABC6E3800D341F3 /* HeaderPositioning.swift */; };
+		42DB85C02ABC719800D341F3 /* ImpulseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85BF2ABC719800D341F3 /* ImpulseResponse.swift */; };
+		42DB85C22ABC71C600D341F3 /* SpcCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85C12ABC71C600D341F3 /* SpcCoordinate.swift */; };
 		42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */; };
 		42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */; };
 		42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C7022AB9E81900A65B4D /* ViewController.swift */; };
@@ -20,12 +27,19 @@
 		42F8C7192AB9FA9D00A65B4D /* soundhelix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */; };
 		42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71B2AB9FDB000A65B4D /* AudioService.swift */; };
 		42F8C71E2ABA018900A65B4D /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71D2ABA018900A65B4D /* Source.swift */; };
-		42F8C7202ABA02F800A65B4D /* AudioFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71F2ABA02F800A65B4D /* AudioFormat.swift */; };
+		42F8C7202ABA02F800A65B4D /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71F2ABA02F800A65B4D /* Format.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		42505F702ABB3D1100B8217F /* HRIR_L.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HRIR_L.csv; sourceTree = "<group>"; };
 		42505F722ABB3EC300B8217F /* HRTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRTF.swift; sourceTree = "<group>"; };
+		42DB85B52ABC14CC00D341F3 /* HRIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRIR.swift; sourceTree = "<group>"; };
+		42DB85B72ABC362400D341F3 /* Amplitude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amplitude.swift; sourceTree = "<group>"; };
+		42DB85B92ABC369F00D341F3 /* HRIR_R.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HRIR_R.csv; sourceTree = "<group>"; };
+		42DB85BB2ABC36B100D341F3 /* SourcePosition.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SourcePosition.csv; sourceTree = "<group>"; };
+		42DB85BD2ABC6E3800D341F3 /* HeaderPositioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderPositioning.swift; sourceTree = "<group>"; };
+		42DB85BF2ABC719800D341F3 /* ImpulseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseResponse.swift; sourceTree = "<group>"; };
+		42DB85C12ABC71C600D341F3 /* SpcCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpcCoordinate.swift; sourceTree = "<group>"; };
 		42F8C6FB2AB9E81900A65B4D /* MiPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +50,7 @@
 		42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundhelix.mp3; sourceTree = "<group>"; };
 		42F8C71B2AB9FDB000A65B4D /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		42F8C71D2ABA018900A65B4D /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		42F8C71F2ABA02F800A65B4D /* AudioFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFormat.swift; sourceTree = "<group>"; };
+		42F8C71F2ABA02F800A65B4D /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +70,39 @@
 		42505F6F2ABB3CE200B8217F /* HRTF_DATA */ = {
 			isa = PBXGroup;
 			children = (
+				42DB85BB2ABC36B100D341F3 /* SourcePosition.csv */,
 				42505F702ABB3D1100B8217F /* HRIR_L.csv */,
+				42DB85B92ABC369F00D341F3 /* HRIR_R.csv */,
 			);
 			path = HRTF_DATA;
+			sourceTree = "<group>";
+		};
+		42DB85C32ABC73D200D341F3 /* HRIR */ = {
+			isa = PBXGroup;
+			children = (
+				42DB85B52ABC14CC00D341F3 /* HRIR.swift */,
+				42DB85C62ABC7C8000D341F3 /* ChannelData */,
+			);
+			path = HRIR;
+			sourceTree = "<group>";
+		};
+		42DB85C52ABC73E700D341F3 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				42DB85B72ABC362400D341F3 /* Amplitude.swift */,
+				42DB85C12ABC71C600D341F3 /* SpcCoordinate.swift */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
+		42DB85C62ABC7C8000D341F3 /* ChannelData */ = {
+			isa = PBXGroup;
+			children = (
+				42DB85C52ABC73E700D341F3 /* Unit */,
+				42DB85BF2ABC719800D341F3 /* ImpulseResponse.swift */,
+				42DB85BD2ABC6E3800D341F3 /* HeaderPositioning.swift */,
+			);
+			path = ChannelData;
 			sourceTree = "<group>";
 		};
 		42F8C6F22AB9E81900A65B4D = {
@@ -102,8 +146,9 @@
 		42F8C7212ABA031C00A65B4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				42DB85C32ABC73D200D341F3 /* HRIR */,
 				42F8C71D2ABA018900A65B4D /* Source.swift */,
-				42F8C71F2ABA02F800A65B4D /* AudioFormat.swift */,
+				42F8C71F2ABA02F800A65B4D /* Format.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +236,8 @@
 				42505F712ABB3D1100B8217F /* HRIR_L.csv in Resources */,
 				42F8C70B2AB9E81A00A65B4D /* LaunchScreen.storyboard in Resources */,
 				42F8C7082AB9E81A00A65B4D /* Assets.xcassets in Resources */,
+				42DB85BA2ABC369F00D341F3 /* HRIR_R.csv in Resources */,
+				42DB85BC2ABC36B100D341F3 /* SourcePosition.csv in Resources */,
 				42F8C7192AB9FA9D00A65B4D /* soundhelix.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,11 +249,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42DB85C22ABC71C600D341F3 /* SpcCoordinate.swift in Sources */,
+				42DB85BE2ABC6E3800D341F3 /* HeaderPositioning.swift in Sources */,
 				42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */,
 				42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */,
-				42F8C7202ABA02F800A65B4D /* AudioFormat.swift in Sources */,
+				42F8C7202ABA02F800A65B4D /* Format.swift in Sources */,
+				42DB85B82ABC362400D341F3 /* Amplitude.swift in Sources */,
 				42505F732ABB3EC300B8217F /* HRTF.swift in Sources */,
 				42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */,
+				42DB85C02ABC719800D341F3 /* ImpulseResponse.swift in Sources */,
+				42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */,
 				42F8C71E2ABA018900A65B4D /* Source.swift in Sources */,
 				42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */,
 			);

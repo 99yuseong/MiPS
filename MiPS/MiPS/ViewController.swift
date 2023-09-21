@@ -30,6 +30,10 @@ final class ViewController: UIViewController {
         configureAddViews()
         configureLayout()
         soundSourcePositioning()
+        
+//        let hrir = HRIR(left: "HRIR_R", right: "HRIR_R", positioning: "SourcePosition")
+        
+//        print(hrir.left.array[0])
     }
     
     // MARK: - Configure
@@ -59,7 +63,7 @@ extension ViewController {
         
         AudioService.shared.playLocalSource(
             for: DefaultSource.soundHelix.name,
-            format: DefaultSource.soundHelix.format
+            format: DefaultSource.soundHelix.format as! AudioFormat
         )
         
         //        AudioService.shared.playExtSource(

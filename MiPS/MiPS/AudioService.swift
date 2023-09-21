@@ -73,7 +73,7 @@ extension AudioService {
         
         return Bundle.main.url(
             forResource: resource,
-            withExtension: format.rawValue
+            withExtension: format.description
         )
     }
     

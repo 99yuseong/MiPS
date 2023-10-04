@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 
 protocol AudioServiceProtocol {
-    func playLocalSource(for resource: String, format: AudioFormat)
+    func playLocalSource(for resource: String, format: AudioExt)
     func playExtSource(from urlString: String)
 }
 
@@ -26,7 +26,7 @@ class AudioService: AudioServiceProtocol {
 
 // MARK: - Methods
 extension AudioService {
-    public func playLocalSource(for resource: String, format: AudioFormat) {
+    public func playLocalSource(for resource: String, format: AudioExt) {
         guard let url = checkLocalUrl(for: resource, format: format) else {
             print("\(resource) can not found.")
             return
@@ -69,7 +69,7 @@ extension AudioService {
 
 // MARK: - URL Check and Data Networking
 extension AudioService {
-    private func checkLocalUrl(for resource: String, format: AudioFormat) -> URL? {
+    private func checkLocalUrl(for resource: String, format: AudioExt) -> URL? {
         
         return Bundle.main.url(
             forResource: resource,

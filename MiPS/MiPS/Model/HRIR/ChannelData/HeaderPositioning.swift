@@ -10,7 +10,7 @@ import CSVImporter
 
 class HeaderPositioning {
     private var name: String
-    private var format: Format
+    private var format: FileExt
     private var path: String?
     
     private var source: [SpcCoordinate] = []
@@ -19,7 +19,7 @@ class HeaderPositioning {
     
     init(
         name: String,
-        format: Format,
+        format: FileExt,
         path: String? = nil
     ) {
         self.name = name

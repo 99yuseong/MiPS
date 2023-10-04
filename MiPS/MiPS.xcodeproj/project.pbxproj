@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4214AC8F2ACC3DFD00B6755C /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4214AC8E2ACC3DFD00B6755C /* Instrument.swift */; };
+		4214AC912ACC484B00B6755C /* MiPSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4214AC902ACC484B00B6755C /* MiPSPlayer.swift */; };
+		4214AC932ACC75AA00B6755C /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4214AC922ACC75AA00B6755C /* Audio.swift */; };
+		4214AC952ACCB37A00B6755C /* soundhelix_mono.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4214AC942ACCB37A00B6755C /* soundhelix_mono.mp3 */; };
 		42505F6E2ABB3CB800B8217F /* CSVImporter in Frameworks */ = {isa = PBXBuildFile; productRef = 42505F6D2ABB3CB800B8217F /* CSVImporter */; };
 		42505F712ABB3D1100B8217F /* HRIR_L.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42505F702ABB3D1100B8217F /* HRIR_L.csv */; };
-		42505F732ABB3EC300B8217F /* HRTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42505F722ABB3EC300B8217F /* HRTF.swift */; };
 		42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B52ABC14CC00D341F3 /* HRIR.swift */; };
 		42DB85B82ABC362400D341F3 /* Amplitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B72ABC362400D341F3 /* Amplitude.swift */; };
 		42DB85BA2ABC369F00D341F3 /* HRIR_R.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42DB85B92ABC369F00D341F3 /* HRIR_R.csv */; };
@@ -27,12 +30,15 @@
 		42F8C7192AB9FA9D00A65B4D /* soundhelix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */; };
 		42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71B2AB9FDB000A65B4D /* AudioService.swift */; };
 		42F8C71E2ABA018900A65B4D /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71D2ABA018900A65B4D /* Source.swift */; };
-		42F8C7202ABA02F800A65B4D /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71F2ABA02F800A65B4D /* Format.swift */; };
+		42F8C7202ABA02F800A65B4D /* FileExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C71F2ABA02F800A65B4D /* FileExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4214AC8E2ACC3DFD00B6755C /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
+		4214AC902ACC484B00B6755C /* MiPSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiPSPlayer.swift; sourceTree = "<group>"; };
+		4214AC922ACC75AA00B6755C /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		4214AC942ACCB37A00B6755C /* soundhelix_mono.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundhelix_mono.mp3; sourceTree = "<group>"; };
 		42505F702ABB3D1100B8217F /* HRIR_L.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HRIR_L.csv; sourceTree = "<group>"; };
-		42505F722ABB3EC300B8217F /* HRTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRTF.swift; sourceTree = "<group>"; };
 		42DB85B52ABC14CC00D341F3 /* HRIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRIR.swift; sourceTree = "<group>"; };
 		42DB85B72ABC362400D341F3 /* Amplitude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amplitude.swift; sourceTree = "<group>"; };
 		42DB85B92ABC369F00D341F3 /* HRIR_R.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HRIR_R.csv; sourceTree = "<group>"; };
@@ -50,7 +56,7 @@
 		42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundhelix.mp3; sourceTree = "<group>"; };
 		42F8C71B2AB9FDB000A65B4D /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		42F8C71D2ABA018900A65B4D /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		42F8C71F2ABA02F800A65B4D /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		42F8C71F2ABA02F800A65B4D /* FileExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +133,8 @@
 				42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */,
 				42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */,
 				42F8C7022AB9E81900A65B4D /* ViewController.swift */,
-				42505F722ABB3EC300B8217F /* HRTF.swift */,
 				42F8C71B2AB9FDB000A65B4D /* AudioService.swift */,
+				4214AC902ACC484B00B6755C /* MiPSPlayer.swift */,
 				42F8C7212ABA031C00A65B4D /* Model */,
 				42F8C7222ABA033900A65B4D /* Resource */,
 			);
@@ -138,6 +144,7 @@
 		42F8C71A2AB9FACC00A65B4D /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				4214AC942ACCB37A00B6755C /* soundhelix_mono.mp3 */,
 				42F8C7182AB9FA9D00A65B4D /* soundhelix.mp3 */,
 			);
 			path = Music;
@@ -148,7 +155,9 @@
 			children = (
 				42DB85C32ABC73D200D341F3 /* HRIR */,
 				42F8C71D2ABA018900A65B4D /* Source.swift */,
-				42F8C71F2ABA02F800A65B4D /* Format.swift */,
+				42F8C71F2ABA02F800A65B4D /* FileExt.swift */,
+				4214AC8E2ACC3DFD00B6755C /* Instrument.swift */,
+				4214AC922ACC75AA00B6755C /* Audio.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +245,7 @@
 				42505F712ABB3D1100B8217F /* HRIR_L.csv in Resources */,
 				42F8C70B2AB9E81A00A65B4D /* LaunchScreen.storyboard in Resources */,
 				42F8C7082AB9E81A00A65B4D /* Assets.xcassets in Resources */,
+				4214AC952ACCB37A00B6755C /* soundhelix_mono.mp3 in Resources */,
 				42DB85BA2ABC369F00D341F3 /* HRIR_R.csv in Resources */,
 				42DB85BC2ABC36B100D341F3 /* SourcePosition.csv in Resources */,
 				42F8C7192AB9FA9D00A65B4D /* soundhelix.mp3 in Resources */,
@@ -252,10 +262,12 @@
 				42DB85C22ABC71C600D341F3 /* SpcCoordinate.swift in Sources */,
 				42DB85BE2ABC6E3800D341F3 /* HeaderPositioning.swift in Sources */,
 				42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */,
+				4214AC912ACC484B00B6755C /* MiPSPlayer.swift in Sources */,
 				42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */,
-				42F8C7202ABA02F800A65B4D /* Format.swift in Sources */,
+				42F8C7202ABA02F800A65B4D /* FileExt.swift in Sources */,
+				4214AC932ACC75AA00B6755C /* Audio.swift in Sources */,
 				42DB85B82ABC362400D341F3 /* Amplitude.swift in Sources */,
-				42505F732ABB3EC300B8217F /* HRTF.swift in Sources */,
+				4214AC8F2ACC3DFD00B6755C /* Instrument.swift in Sources */,
 				42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */,
 				42DB85C02ABC719800D341F3 /* ImpulseResponse.swift in Sources */,
 				42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */,

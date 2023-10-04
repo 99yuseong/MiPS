@@ -9,8 +9,8 @@ import Foundation
 import CSVImporter
 
 class ImpulseResponse {
-    private var name: String
-    private var format: Format
+    private let name: String
+    private let format: FileExt
     private var path: String?
     
     private var source: [[Amplitude]] = []
@@ -19,8 +19,7 @@ class ImpulseResponse {
     
     init(
         name: String,
-        format: Format,
-        path: String? = nil
+        format: FileExt
     ) {
         self.name = name
         self.format = format
@@ -40,7 +39,6 @@ extension ImpulseResponse {
     
     private func loadSource() -> [[Amplitude]] {
         guard let path = path else {
-            print(name)
             print("Can't Find File Path")
             return []
         }

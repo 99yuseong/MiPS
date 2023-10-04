@@ -12,6 +12,9 @@ import AVFoundation
 
 final class ViewController: UIViewController {
     
+    var audio: Audio!
+    var player: MiPSPlayer!
+    
     // MARK: - UI
     private var titleLabel = UILabel().then {
         $0.text = "Hello world"
@@ -29,11 +32,15 @@ final class ViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
-        soundSourcePositioning()
         
-//        let hrir = HRIR(left: "HRIR_R", right: "HRIR_R", positioning: "SourcePosition")
+        audio = Audio(
+            name: "soundhelix_mono",
+            ext: .mp3,
+            type: .guitar,
+            frameCount: 1024
+        )
         
-//        print(hrir.left.array[0])
+        player = MiPSPlayer(audio: audio)
     }
     
     // MARK: - Configure
@@ -60,15 +67,11 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     @objc func playMusic() {
-        
-        AudioService.shared.playLocalSource(
-            for: DefaultSource.soundHelix.name,
-            format: DefaultSource.soundHelix.format as! AudioFormat
-        )
-        
-        //        AudioService.shared.playExtSource(
-        //            from: DefaultSource.soundHelix.url
-        //        )
+        player.play()
+//        AudioService.shared.playLocalSource(
+//            for: DefaultSource.soundHelix.name,
+//            format: DefaultSource.soundHelix.format as! AudioExt
+//        )
     }
 }
 

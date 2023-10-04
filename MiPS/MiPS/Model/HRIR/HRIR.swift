@@ -6,46 +6,104 @@
 //
 
 import Foundation
+import AVFoundation
+
+protocol HRIRProtocol {
+    func left(at index: Int) -> [Double]
+    func right(at index: Int) -> [Double]
+    func positioning(at index: Int) -> SpcCoordinate
+}
 
 /// Resource/HRTF_DATA 경로에 저장된 .scv 파일에서 데이터를 추출한 클래스입니다.
 ///
-/// left.array[index]를 통해 [String] 데이터를 얻을 수 있습니다.
-/// right.array[index] 역시 동일합니다.
+/// HRIR.data.left(at: index)를 통해 [Double] 데이터를 얻을 수 있습니다.
+/// HRIR.data.left(at: index) 역시 동일합니다.
 ///
-///     left.array[0]
+///     HRIR.data.left(at: HRIRNum)
 ///
-///     right.array[10]
+///     HRIR.data.right(at: HRIRNum)
 ///
-/// positioning.array[index]를 통해 각 index의 theta, pi, r의 Float 값을 얻을 수 있습니다.
+/// HRIR.data.positioning(at: index)를 통해 각 index의 theta, pi, r의 Float 값을 얻을 수 있습니다.
 ///
-///     positioning.array[index].theta
+///     HRIR.data.positioning(at: HRIRNum).theta
 ///
-///     positioning.array[index].pi
+///     HRIR.data.positioning(at: HRIRNum).pi
 ///
-///     positioning.array[index].r
+///     HRIR.data.positioning(at: HRIRNum).r
 ///
-class HRIR {
+class HRIR: HRIRProtocol {
     
-    var left: ImpulseResponse
-    var right: ImpulseResponse
-    var positioning: HeaderPositioning
+    static let data = HRIR(
+        left: "HRIR_L",
+        right: "HRIR_R",
+        positioning: "SourcePosition"
+    )
     
-    init(
+    private let left: ImpulseResponse
+    private let right: ImpulseResponse
+    private let positioning: HeaderPositioning
+    
+    private init(
         left: String,
         right: String,
         positioning: String
     ) {
         self.left = ImpulseResponse(
             name: left,
-            format: DataFormat.csv
+            format: DataExt.csv
         )
         self.right = ImpulseResponse(
             name: right,
-            format: DataFormat.csv
+            format: DataExt.csv
         )
         self.positioning = HeaderPositioning(
             name: positioning,
-            format: DataFormat.csv
+            format: DataExt.csv
         )
+    }
+}
+
+// MARK: - Methods
+extension HRIR {
+    /// HRIR Left 데이터의 index번째 위치한 Double 배열을 리턴합니다.
+    /// - Parameter index: 조회할 데이터의 순번
+    /// - Returns: Amplitude Double 배열
+    public func left(at index: Int) -> [Double] {
+        guard index >= 0,
+              index < left.array.count
+        else {
+            print("⛔️ HRIR_Left Out of Range")
+            return []
+        }
+        
+        return left.array[index].map { Double($0) ?? 0 }
+    }
+    
+    /// HRIR Right 데이터의 index번째 위치한 Double 배열을 리턴합니다.
+    /// - Parameter index: 조회할 데이터의 순번
+    /// - Returns: Amplitude Double 배열
+    public func right(at index: Int) -> [Double] {
+        guard index >= 0,
+              index < right.array.count
+        else {
+            print("⛔️ HRIR_Right Out of Range")
+            return []
+        }
+        
+        return right.array[index].map { Double($0) ?? 0 }
+    }
+    
+    /// HRIR Positioning 데이터의 index번째 위치한 SpcCoordinate을 리턴합니다.
+    /// - Parameter index: 조회할 데이터의 순번
+    /// - Returns: theta, pi, r의 Float 값
+    public func positioning(at index: Int) -> SpcCoordinate {
+        guard index >= 0,
+              index < positioning.array.count
+        else {
+            print("⛔️ HRIR_Positioning Out of Range")
+            return SpcCoordinate(theta: 0, pi: 0, r: 0)
+        }
+        
+        return positioning.array[index]
     }
 }

@@ -69,9 +69,6 @@ extension Audio {
             return 0
         }
         
-        print(buffer.frameLength)
-        print(frameCount)
-        
         return Int(Int(buffer.frameLength) / frameCount)
     }
 }

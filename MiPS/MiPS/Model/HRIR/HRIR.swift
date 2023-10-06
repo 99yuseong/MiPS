@@ -9,8 +9,8 @@ import Foundation
 import AVFoundation
 
 protocol HRIRProtocol {
-    func left(at index: Int) -> [Double]
-    func right(at index: Int) -> [Double]
+    func left(at index: Int) -> [Float]
+    func right(at index: Int) -> [Float]
     func positioning(at index: Int) -> SpcCoordinate
 }
 
@@ -65,10 +65,10 @@ class HRIR: HRIRProtocol {
 
 // MARK: - Methods
 extension HRIR {
-    /// HRIR Left 데이터의 index번째 위치한 Double 배열을 리턴합니다.
+    /// HRIR Left 데이터의 index번째 위치한 Float 배열을 리턴합니다.
     /// - Parameter index: 조회할 데이터의 순번
-    /// - Returns: Amplitude Double 배열
-    public func left(at index: Int) -> [Double] {
+    /// - Returns: Amplitude Float 배열
+    public func left(at index: Int) -> [Float] {
         guard index >= 0,
               index < left.array.count
         else {
@@ -76,13 +76,13 @@ extension HRIR {
             return []
         }
         
-        return left.array[index].map { Double($0) ?? 0 }
+        return left.array[index].map { Float($0) ?? 0 }
     }
     
-    /// HRIR Right 데이터의 index번째 위치한 Double 배열을 리턴합니다.
+    /// HRIR Right 데이터의 index번째 위치한 Float 배열을 리턴합니다.
     /// - Parameter index: 조회할 데이터의 순번
-    /// - Returns: Amplitude Double 배열
-    public func right(at index: Int) -> [Double] {
+    /// - Returns: Amplitude Float 배열
+    public func right(at index: Int) -> [Float] {
         guard index >= 0,
               index < right.array.count
         else {
@@ -90,7 +90,7 @@ extension HRIR {
             return []
         }
         
-        return right.array[index].map { Double($0) ?? 0 }
+        return right.array[index].map { Float($0) ?? 0 }
     }
     
     /// HRIR Positioning 데이터의 index번째 위치한 SpcCoordinate을 리턴합니다.

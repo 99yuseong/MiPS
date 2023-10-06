@@ -37,7 +37,7 @@ final class ViewController: UIViewController {
             name: "soundhelix_mono",
             ext: .mp3,
             type: .guitar,
-            frameCount: 1024
+            frameCount: 512
         )
         
         player = MiPSPlayer(audio: audio)

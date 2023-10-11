@@ -11,7 +11,7 @@ import Then
 import AVFoundation
 
 final class ViewController: UIViewController {
-    
+    var data = 1234
     // MARK: - UI
     private var titleLabel = UILabel().then {
         $0.text = "Hello world"
@@ -29,6 +29,11 @@ final class ViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NetworkService.shared.connect()
     }
     
     // MARK: - Configure
@@ -55,15 +60,8 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     @objc func playMusic() {
-        
-        AudioService.shared.playLocalSource(
-            for: DefaultSource.soundHelix.name,
-            format: DefaultSource.soundHelix.format
-        )
-        
-//        AudioService.shared.playExtSource(
-//            from: DefaultSource.soundHelix.url
-//        )
+        NetworkService.shared.sendMessage("\(data)")
+        data += 1
     }
 }
 

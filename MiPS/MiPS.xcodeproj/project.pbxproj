@@ -13,6 +13,8 @@
 		4214AC952ACCB37A00B6755C /* soundhelix_mono.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4214AC942ACCB37A00B6755C /* soundhelix_mono.mp3 */; };
 		42505F6E2ABB3CB800B8217F /* CSVImporter in Frameworks */ = {isa = PBXBuildFile; productRef = 42505F6D2ABB3CB800B8217F /* CSVImporter */; };
 		42505F712ABB3D1100B8217F /* HRIR_L.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42505F702ABB3D1100B8217F /* HRIR_L.csv */; };
+		42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 42B1040E2AD6CA2400FABEE2 /* Starscream */; };
+		42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B104102AD6CA3100FABEE2 /* NetworkService.swift */; };
 		42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B52ABC14CC00D341F3 /* HRIR.swift */; };
 		42DB85B82ABC362400D341F3 /* Amplitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B72ABC362400D341F3 /* Amplitude.swift */; };
 		42DB85BA2ABC369F00D341F3 /* HRIR_R.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42DB85B92ABC369F00D341F3 /* HRIR_R.csv */; };
@@ -39,6 +41,7 @@
 		4214AC922ACC75AA00B6755C /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		4214AC942ACCB37A00B6755C /* soundhelix_mono.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundhelix_mono.mp3; sourceTree = "<group>"; };
 		42505F702ABB3D1100B8217F /* HRIR_L.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HRIR_L.csv; sourceTree = "<group>"; };
+		42B104102AD6CA3100FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42DB85B52ABC14CC00D341F3 /* HRIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRIR.swift; sourceTree = "<group>"; };
 		42DB85B72ABC362400D341F3 /* Amplitude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amplitude.swift; sourceTree = "<group>"; };
 		42DB85B92ABC369F00D341F3 /* HRIR_R.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HRIR_R.csv; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 				42F8C7142AB9EF3B00A65B4D /* SnapKit in Frameworks */,
 				42505F6E2ABB3CB800B8217F /* CSVImporter in Frameworks */,
 				42F8C7172AB9EF6000A65B4D /* Then in Frameworks */,
+				42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +138,7 @@
 				42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */,
 				42F8C7022AB9E81900A65B4D /* ViewController.swift */,
 				42F8C71B2AB9FDB000A65B4D /* AudioService.swift */,
+				42B104102AD6CA3100FABEE2 /* NetworkService.swift */,
 				4214AC902ACC484B00B6755C /* MiPSPlayer.swift */,
 				42F8C7212ABA031C00A65B4D /* Model */,
 				42F8C7222ABA033900A65B4D /* Resource */,
@@ -194,6 +199,7 @@
 				42F8C7132AB9EF3B00A65B4D /* SnapKit */,
 				42F8C7162AB9EF6000A65B4D /* Then */,
 				42505F6D2ABB3CB800B8217F /* CSVImporter */,
+				42B1040E2AD6CA2400FABEE2 /* Starscream */,
 			);
 			productName = MiPS;
 			productReference = 42F8C6FB2AB9E81900A65B4D /* MiPS.app */;
@@ -227,6 +233,7 @@
 				42F8C7122AB9EF3B00A65B4D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				42F8C7152AB9EF6000A65B4D /* XCRemoteSwiftPackageReference "Then" */,
 				42505F6C2ABB3CB800B8217F /* XCRemoteSwiftPackageReference "CSVImporter" */,
+				42B1040D2AD6CA2400FABEE2 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = 42F8C6FC2AB9E81900A65B4D /* Products */;
 			projectDirPath = "";
@@ -269,6 +276,7 @@
 				42DB85B82ABC362400D341F3 /* Amplitude.swift in Sources */,
 				4214AC8F2ACC3DFD00B6755C /* Instrument.swift in Sources */,
 				42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */,
+				42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */,
 				42DB85C02ABC719800D341F3 /* ImpulseResponse.swift in Sources */,
 				42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */,
 				42F8C71E2ABA018900A65B4D /* Source.swift in Sources */,
@@ -492,6 +500,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		42B1040D2AD6CA2400FABEE2 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		42F8C7122AB9EF3B00A65B4D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -515,6 +531,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 42505F6C2ABB3CB800B8217F /* XCRemoteSwiftPackageReference "CSVImporter" */;
 			productName = CSVImporter;
+		};
+		42B1040E2AD6CA2400FABEE2 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42B1040D2AD6CA2400FABEE2 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 		42F8C7132AB9EF3B00A65B4D /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

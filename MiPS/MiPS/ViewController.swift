@@ -43,6 +43,12 @@ final class ViewController: UIViewController {
         player = MiPSPlayer(audio: audio)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NetworkService.shared.connect()
+        NetworkService.shared.playerNode.play()
+    }
+    
     // MARK: - Configure
     private func configureCommonUI() {
         view.backgroundColor = .white
@@ -67,7 +73,9 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     @objc func playMusic() {
-        player.play()
+//        NetworkService.shared.sendMessage("1")
+//        NetworkService.shared.playerNode.play()
+//        player.play()
 //        AudioService.shared.playLocalSource(
 //            for: DefaultSource.soundHelix.name,
 //            format: DefaultSource.soundHelix.format as! AudioExt

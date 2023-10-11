@@ -149,4 +149,5 @@ xcuserdata
 **/xcshareddata/WorkspaceSettings.xcsettings
 *.xcuserstate
 
+*.xcuserstate
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,macos,swiftpm,swiftpackagemanager,cocoapods

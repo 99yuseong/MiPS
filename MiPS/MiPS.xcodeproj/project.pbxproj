@@ -20,6 +20,9 @@
 		42DB85BE2ABC6E3800D341F3 /* HeaderPositioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85BD2ABC6E3800D341F3 /* HeaderPositioning.swift */; };
 		42DB85C02ABC719800D341F3 /* ImpulseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85BF2ABC719800D341F3 /* ImpulseResponse.swift */; };
 		42DB85C22ABC71C600D341F3 /* SpcCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85C12ABC71C600D341F3 /* SpcCoordinate.swift */; };
+		42B104072AD58DC000FABEE2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 42B104062AD58DC000FABEE2 /* Alamofire */; };
+		42B1040A2AD58EB900FABEE2 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 42B104092AD58EB900FABEE2 /* SocketIO */; };
+		42B1040C2AD58EE400FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B1040B2AD58EE400FABEE2 /* NetworkService.swift */; };
 		42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */; };
 		42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */; };
 		42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C7022AB9E81900A65B4D /* ViewController.swift */; };
@@ -46,6 +49,7 @@
 		42DB85BD2ABC6E3800D341F3 /* HeaderPositioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderPositioning.swift; sourceTree = "<group>"; };
 		42DB85BF2ABC719800D341F3 /* ImpulseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseResponse.swift; sourceTree = "<group>"; };
 		42DB85C12ABC71C600D341F3 /* SpcCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpcCoordinate.swift; sourceTree = "<group>"; };
+		42B1040B2AD58EE400FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42F8C6FB2AB9E81900A65B4D /* MiPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B104072AD58DC000FABEE2 /* Alamofire in Frameworks */,
+				42B1040A2AD58EB900FABEE2 /* SocketIO in Frameworks */,
 				42F8C7142AB9EF3B00A65B4D /* SnapKit in Frameworks */,
 				42505F6E2ABB3CB800B8217F /* CSVImporter in Frameworks */,
 				42F8C7172AB9EF6000A65B4D /* Then in Frameworks */,
@@ -137,6 +143,7 @@
 				4214AC902ACC484B00B6755C /* MiPSPlayer.swift */,
 				42F8C7212ABA031C00A65B4D /* Model */,
 				42F8C7222ABA033900A65B4D /* Resource */,
+				42B1040B2AD58EE400FABEE2 /* NetworkService.swift */,
 			);
 			path = MiPS;
 			sourceTree = "<group>";
@@ -165,9 +172,9 @@
 		42F8C7222ABA033900A65B4D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				42F8C70C2AB9E81A00A65B4D /* Info.plist */,
 				42F8C7072AB9E81A00A65B4D /* Assets.xcassets */,
 				42F8C7092AB9E81A00A65B4D /* LaunchScreen.storyboard */,
-				42F8C70C2AB9E81A00A65B4D /* Info.plist */,
 				42505F6F2ABB3CE200B8217F /* HRTF_DATA */,
 				42F8C71A2AB9FACC00A65B4D /* Music */,
 			);
@@ -194,6 +201,8 @@
 				42F8C7132AB9EF3B00A65B4D /* SnapKit */,
 				42F8C7162AB9EF6000A65B4D /* Then */,
 				42505F6D2ABB3CB800B8217F /* CSVImporter */,
+				42B104062AD58DC000FABEE2 /* Alamofire */,
+				42B104092AD58EB900FABEE2 /* SocketIO */,
 			);
 			productName = MiPS;
 			productReference = 42F8C6FB2AB9E81900A65B4D /* MiPS.app */;
@@ -227,6 +236,8 @@
 				42F8C7122AB9EF3B00A65B4D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				42F8C7152AB9EF6000A65B4D /* XCRemoteSwiftPackageReference "Then" */,
 				42505F6C2ABB3CB800B8217F /* XCRemoteSwiftPackageReference "CSVImporter" */,
+				42B104052AD58DC000FABEE2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				42B104082AD58EB900FABEE2 /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = 42F8C6FC2AB9E81900A65B4D /* Products */;
 			projectDirPath = "";
@@ -273,6 +284,7 @@
 				42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */,
 				42F8C71E2ABA018900A65B4D /* Source.swift in Sources */,
 				42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */,
+				42B1040C2AD58EE400FABEE2 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +502,20 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+		42B104052AD58DC000FABEE2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
+		42B104082AD58EB900FABEE2 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		42F8C7122AB9EF3B00A65B4D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -515,6 +541,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 42505F6C2ABB3CB800B8217F /* XCRemoteSwiftPackageReference "CSVImporter" */;
 			productName = CSVImporter;
+		42B104062AD58DC000FABEE2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42B104052AD58DC000FABEE2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		42B104092AD58EB900FABEE2 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42B104082AD58EB900FABEE2 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
 		};
 		42F8C7132AB9EF3B00A65B4D /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -14,7 +14,7 @@ final class ViewController: UIViewController {
     
     var audio: Audio!
     var player: MiPSPlayer!
-    
+   
     // MARK: - UI
     private var titleLabel = UILabel().then {
         $0.text = "Hello world"
@@ -43,6 +43,11 @@ final class ViewController: UIViewController {
         player = MiPSPlayer(audio: audio)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NetworkService.shared.connect()
+    }
+    
     // MARK: - Configure
     private func configureCommonUI() {
         view.backgroundColor = .white
@@ -67,11 +72,8 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     @objc func playMusic() {
-        player.play()
-//        AudioService.shared.playLocalSource(
-//            for: DefaultSource.soundHelix.name,
-//            format: DefaultSource.soundHelix.format as! AudioExt
-//        )
+        NetworkService.shared.sendMessage("\(data)")
+        data += 1
     }
 }
 

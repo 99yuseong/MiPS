@@ -12,12 +12,50 @@ import AVFoundation
 
 final class ViewController: UIViewController {
     
-    var audio: Audio!
-    var player: MiPSPlayer!
-    
     // MARK: - UI
-    private var titleLabel = UILabel().then {
-        $0.text = "Hello world"
+    private var rollLabel = UILabel().then {
+        $0.text = "Roll: 0.0"
+    }
+    
+    private lazy var rollSlider = UISlider().then {
+        $0.minimumValue = -180
+        $0.maximumValue = 180
+        $0.isContinuous = true
+        $0.tintColor = UIColor.red
+        $0.addTarget(
+            self,
+            action: #selector(rollValueChanged(_:)),
+            for: .valueChanged)
+    }
+    
+    private var pitchLabel = UILabel().then {
+        $0.text = "Pitch: 0.0"
+    }
+    
+    private lazy var pitchSlider = UISlider().then {
+        $0.minimumValue = -180
+        $0.maximumValue = 180
+        $0.isContinuous = true
+        $0.tintColor = UIColor.green
+        $0.addTarget(
+            self,
+            action: #selector(pitchValueChanged(_:)),
+            for: .valueChanged)
+    }
+    
+    private var yawLabel = UILabel().then {
+        $0.text = "Yaw: 0.0"
+    }
+    
+    private lazy var yawSlider = UISlider().then {
+        $0.minimumValue = -180
+        $0.maximumValue = 180
+        $0.isContinuous = true
+        $0.tintColor = UIColor.blue
+        $0.addTarget(
+            self,
+            action: #selector(yawValueChanged(_:)),
+            for: .valueChanged)
     }
     
     private lazy var playBtn = UIButton().then {
@@ -32,21 +70,6 @@ final class ViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
-        
-        audio = Audio(
-            name: "soundhelix_mono",
-            ext: .mp3,
-            type: .guitar,
-            frameCount: 512
-        )
-        
-        player = MiPSPlayer(audio: audio)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        NetworkService.shared.connect()
-        NetworkService.shared.playerNode.play()
     }
     
     // MARK: - Configure
@@ -55,31 +78,86 @@ final class ViewController: UIViewController {
     }
     
     private func configureAddViews() {
-        view.addSubview(titleLabel)
+        view.addSubview(rollLabel)
+        view.addSubview(rollSlider)
+        view.addSubview(pitchLabel)
+        view.addSubview(pitchSlider)
+        view.addSubview(yawLabel)
+        view.addSubview(yawSlider)
         view.addSubview(playBtn)
     }
     
     private func configureLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.center.equalTo(view.safeAreaLayoutGuide)
+        rollLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalToSuperview().offset(100)
+        }
+        
+        rollSlider.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(20)
+            make.top.equalTo(rollLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        
+        pitchLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(rollSlider.snp.bottom).offset(40)
+        }
+        
+        pitchSlider.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(20)
+            make.top.equalTo(pitchLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        
+        yawLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(pitchSlider.snp.bottom).offset(40)
+        }
+        
+        yawSlider.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(20)
+            make.top.equalTo(yawLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
         }
         
         playBtn.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(yawSlider.snp.bottom).offset(100)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    @objc func rollValueChanged(_ sender: UISlider) {
+        rollLabel.text = "Roll: \(String(format: "%.1f", sender.value))"
+        sendHeadPositionData()
+    }
+         
+    @objc func pitchValueChanged(_ sender: UISlider) {
+        pitchLabel.text = "Pitch: \(String(format: "%.1f", sender.value))"
+        sendHeadPositionData()
+    }
+         
+    @objc func yawValueChanged(_ sender: UISlider) {
+        yawLabel.text = "Yaw: \(String(format: "%.1f", sender.value))"
+        sendHeadPositionData()
+    }
+    
+    func sendHeadPositionData() {
+        let position = HeadPosition(
+            roll: rollSlider.value.roundToFirst(),
+            pitch: pitchSlider.value.roundToFirst(),
+            yaw: yawSlider.value.roundToFirst()
+        )
+        AudioService.shared.sendHeadPosition(position)
     }
 }
 
 extension ViewController {
     @objc func playMusic() {
-//        NetworkService.shared.sendMessage("1")
-//        NetworkService.shared.playerNode.play()
-//        player.play()
-//        AudioService.shared.playLocalSource(
-//            for: DefaultSource.soundHelix.name,
-//            format: DefaultSource.soundHelix.format as! AudioExt
-//        )
+        AudioService.shared.playStreamingFromServer()
     }
 }
 

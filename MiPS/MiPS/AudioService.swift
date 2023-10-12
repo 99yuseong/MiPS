@@ -10,7 +10,8 @@ import AVFoundation
 
 protocol AudioServiceProtocol {
     func playLocalSource(for resource: String, format: AudioExt)
-    func playExtSource(from urlString: String)
+    func downloadExtSource(from urlString: String)
+    func playStreamingFromServer()
 }
 
 class AudioService: AudioServiceProtocol {
@@ -18,10 +19,37 @@ class AudioService: AudioServiceProtocol {
     // MARK: - Property
     static let shared = AudioService()
     
+    private var audioEngine = AVAudioEngine()
+    private var playerNode = AVAudioPlayerNode()
     private var soundEffect: AVAudioPlayer?
     
     // MARK: - Life Cycle
-    private init() {}
+    private init() {
+        prepareEngine()
+    }
+    
+    private func prepareEngine() {
+        audioEngine.attach(playerNode)
+        audioEngine.connect(
+            playerNode, to: audioEngine.mainMixerNode, format: nil
+        )
+        
+        do {
+            try audioEngine.start()
+        } catch {
+            print(#fileID, #function, #line, "⛔️ Failed to start engine: \(error)")
+        }
+    }
+    
+    
+    private func scheduleBuffer(_ floatArray: [[Float]]) {
+        let buffer = floatArray.toStereoBuffer()
+        scheduleBuffer(buffer)
+    }
+    
+    private func scheduleBuffer(_ buffer: AVAudioPCMBuffer) {
+        playerNode.scheduleBuffer(buffer)
+    }
 }
 
 // MARK: - Methods
@@ -35,7 +63,7 @@ extension AudioService {
         playAudio(localUrl: url)
     }
     
-    public func playExtSource(from urlString: String) {
+    public func downloadExtSource(from urlString: String) {
         DispatchQueue.global().async { [self] in
             guard let url = checkExtUrl(for: urlString),
                   let data = requestSourceData(from: url)
@@ -43,6 +71,52 @@ extension AudioService {
             
             playAudio(resource: data)
         }
+    }
+    
+    public func playStreamingFromServer() {
+        setStreaming()
+        playerNode.play()
+    }
+    
+    func setStreaming() {
+        NetworkService.shared.setSocketEvent(onEvent: { [self] event in
+            switch event {
+            case .binary(let data):
+                DispatchQueue.global().async { [self] in
+                    let floatArray = convertDataToArray(data)
+                    scheduleBuffer(floatArray)
+                }
+            default:
+                break
+            }
+        })
+        
+        NetworkService.shared.connectSocket()
+    }
+    
+    func sendHeadPosition(_ position: HeadPosition) {
+        let encoder = JSONEncoder()
+        
+        do {
+            let jsonData = try encoder.encode(position)
+            
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                NetworkService.shared.sendMessage(jsonString)
+            }
+        } catch {
+           print("Error encoding object to JSON:", error.localizedDescription)
+        }
+    }
+    
+    func convertDataToArray(_ data: Data) -> [[Float]] {
+        let floatCount = data.count / 8
+        
+        let byteSizeForOneArray = floatCount * MemoryLayout<Float>.size
+        
+        let left = data.subdata(in: 0..<byteSizeForOneArray)
+        let right = data.subdata(in: byteSizeForOneArray..<data.count)
+        
+        return [left.byteToFloatArray(), right.byteToFloatArray()]
     }
 }
 

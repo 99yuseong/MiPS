@@ -146,7 +146,7 @@ final class ViewController: UIViewController {
     }
     
     func sendHeadPositionData() {
-        let position = HeadPosition(
+        let position = HeadRotation(
             roll: rollSlider.value.roundToFirst(),
             pitch: pitchSlider.value.roundToFirst(),
             yaw: yawSlider.value.roundToFirst()

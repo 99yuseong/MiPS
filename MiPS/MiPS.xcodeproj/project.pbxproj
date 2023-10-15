@@ -16,8 +16,9 @@
 		4251BCD32AD6FFC3005C1171 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD22AD6FFC3005C1171 /* Const.swift */; };
 		4251BCD62AD703BC005C1171 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD52AD703BC005C1171 /* Data+.swift */; };
 		4251BCD82AD7065F005C1171 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD72AD7065F005C1171 /* Array+.swift */; };
-		4251BCDA2AD7C2FC005C1171 /* headPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD92AD7C2FC005C1171 /* headPosition.swift */; };
+		4251BCDA2AD7C2FC005C1171 /* HeadRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD92AD7C2FC005C1171 /* HeadRotation.swift */; };
 		4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCDB2AD7C582005C1171 /* Float+.swift */; };
+		4251BCDE2AD7D309005C1171 /* SoundSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCDD2AD7D309005C1171 /* SoundSource.swift */; };
 		42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 42B1040E2AD6CA2400FABEE2 /* Starscream */; };
 		42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B104102AD6CA3100FABEE2 /* NetworkService.swift */; };
 		42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DB85B52ABC14CC00D341F3 /* HRIR.swift */; };
@@ -49,8 +50,9 @@
 		4251BCD22AD6FFC3005C1171 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		4251BCD52AD703BC005C1171 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		4251BCD72AD7065F005C1171 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
-		4251BCD92AD7C2FC005C1171 /* headPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headPosition.swift; sourceTree = "<group>"; };
+		4251BCD92AD7C2FC005C1171 /* HeadRotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadRotation.swift; sourceTree = "<group>"; };
 		4251BCDB2AD7C582005C1171 /* Float+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+.swift"; sourceTree = "<group>"; };
+		4251BCDD2AD7D309005C1171 /* SoundSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSource.swift; sourceTree = "<group>"; };
 		42B104102AD6CA3100FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42DB85B52ABC14CC00D341F3 /* HRIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRIR.swift; sourceTree = "<group>"; };
 		42DB85B72ABC362400D341F3 /* Amplitude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amplitude.swift; sourceTree = "<group>"; };
@@ -185,7 +187,8 @@
 				42F8C71F2ABA02F800A65B4D /* FileExt.swift */,
 				4214AC8E2ACC3DFD00B6755C /* Instrument.swift */,
 				4214AC922ACC75AA00B6755C /* Audio.swift */,
-				4251BCD92AD7C2FC005C1171 /* headPosition.swift */,
+				4251BCD92AD7C2FC005C1171 /* HeadRotation.swift */,
+				4251BCDD2AD7D309005C1171 /* SoundSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42DB85C22ABC71C600D341F3 /* SpcCoordinate.swift in Sources */,
+				4251BCDE2AD7D309005C1171 /* SoundSource.swift in Sources */,
 				42DB85BE2ABC6E3800D341F3 /* HeaderPositioning.swift in Sources */,
 				42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */,
 				4214AC912ACC484B00B6755C /* MiPSPlayer.swift in Sources */,
@@ -303,7 +307,7 @@
 				42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */,
 				42DB85C02ABC719800D341F3 /* ImpulseResponse.swift in Sources */,
 				4251BCD82AD7065F005C1171 /* Array+.swift in Sources */,
-				4251BCDA2AD7C2FC005C1171 /* headPosition.swift in Sources */,
+				4251BCDA2AD7C2FC005C1171 /* HeadRotation.swift in Sources */,
 				42DB85B62ABC14CC00D341F3 /* HRIR.swift in Sources */,
 				4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */,
 				4251BCD32AD6FFC3005C1171 /* Const.swift in Sources */,

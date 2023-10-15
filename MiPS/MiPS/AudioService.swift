@@ -94,7 +94,7 @@ extension AudioService {
         NetworkService.shared.connectSocket()
     }
     
-    func sendHeadPosition(_ position: HeadPosition) {
+    func sendHeadPosition(_ position: HeadRotation) {
         let encoder = JSONEncoder()
         
         do {

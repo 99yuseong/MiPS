@@ -1,5 +1,5 @@
 //
-//  headPosition.swift
+//  HeadRotation.swift
 //  MiPS
 //
 //  Created by 남유성 on 2023/10/12.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HeadPosition: Codable {
+class HeadRotation: Codable {
     var roll: Float
     var pitch: Float
     var yaw: Float

@@ -9,59 +9,29 @@ import UIKit
 import SnapKit
 import Then
 import AVFoundation
+import SpriteKit
 
 final class ViewController: UIViewController {
     
     // MARK: - UI
     private var rollLabel = UILabel().then {
         $0.text = "Roll: 0.0"
-    }
-    
-    private lazy var rollSlider = UISlider().then {
-        $0.minimumValue = -180
-        $0.maximumValue = 180
-        $0.isContinuous = true
-        $0.tintColor = UIColor.red
-        $0.addTarget(
-            self,
-            action: #selector(rollValueChanged(_:)),
-            for: .valueChanged)
+        $0.font = UIFont.systemFont(ofSize: 10)
     }
     
     private var pitchLabel = UILabel().then {
         $0.text = "Pitch: 0.0"
+        $0.font = UIFont.systemFont(ofSize: 10)
     }
-    
-    private lazy var pitchSlider = UISlider().then {
-        $0.minimumValue = -180
-        $0.maximumValue = 180
-        $0.isContinuous = true
-        $0.tintColor = UIColor.green
-        $0.addTarget(
-            self,
-            action: #selector(pitchValueChanged(_:)),
-            for: .valueChanged)
-    }
-    
+        
     private var yawLabel = UILabel().then {
         $0.text = "Yaw: 0.0"
+        $0.font = UIFont.systemFont(ofSize: 10)
     }
     
-    private lazy var yawSlider = UISlider().then {
-        $0.minimumValue = -180
-        $0.maximumValue = 180
-        $0.isContinuous = true
-        $0.tintColor = UIColor.blue
-        $0.addTarget(
-            self,
-            action: #selector(yawValueChanged(_:)),
-            for: .valueChanged)
-    }
-    
-    private lazy var playBtn = UIButton().then {
-        $0.setTitle("재생", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.addTarget(self, action: #selector(playMusic), for: .touchUpInside)
+    private var headphoneLabel = UILabel().then {
+        $0.text = "HeadPhone 🔴"
+        $0.font = UIFont.systemFont(ofSize: 10)
     }
     
     // MARK: - Life Cycle
@@ -70,6 +40,30 @@ final class ViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
+        HPMotionService.shared.delegate = self
+        
+//        let scene = GameScene(size: self.view.bounds.size)
+//        scene.backgroundColor = .white
+//        
+//        let skView = SKView()
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
+//        skView.ignoresSiblingOrder = true
+//        skView.presentScene(scene)
+//        
+//        view.addSubview(skView)
+//        skView.snp.makeConstraints { make in
+//            make.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+//        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AudioService.shared.playStreamingFromServer()
+    }
+    
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask  {
+        return UIDevice.current.userInterfaceIdiom == .phone ? .allButUpsideDown : .all
     }
     
     // MARK: - Configure
@@ -79,85 +73,61 @@ final class ViewController: UIViewController {
     
     private func configureAddViews() {
         view.addSubview(rollLabel)
-        view.addSubview(rollSlider)
         view.addSubview(pitchLabel)
-        view.addSubview(pitchSlider)
         view.addSubview(yawLabel)
-        view.addSubview(yawSlider)
-        view.addSubview(playBtn)
+        view.addSubview(headphoneLabel)
     }
     
     private func configureLayout() {
         rollLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalToSuperview().offset(100)
-        }
-        
-        rollSlider.snp.makeConstraints { make in
-            make.width.equalTo(300)
-            make.height.equalTo(20)
-            make.top.equalTo(rollLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.equalTo(headphoneLabel)
         }
         
         pitchLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(rollSlider.snp.bottom).offset(40)
-        }
-        
-        pitchSlider.snp.makeConstraints { make in
-            make.width.equalTo(300)
-            make.height.equalTo(20)
-            make.top.equalTo(pitchLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(rollLabel.snp.bottom).offset(8)
+            make.leading.equalTo(headphoneLabel)
         }
         
         yawLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(pitchSlider.snp.bottom).offset(40)
+            make.top.equalTo(pitchLabel.snp.bottom).offset(8)
+            make.leading.equalTo(headphoneLabel)
         }
         
-        yawSlider.snp.makeConstraints { make in
-            make.width.equalTo(300)
-            make.height.equalTo(20)
-            make.top.equalTo(yawLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+        headphoneLabel.snp.makeConstraints { make in
+            make.top.equalTo(yawLabel.snp.bottom).offset(8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
-        
-        playBtn.snp.makeConstraints { make in
-            make.top.equalTo(yawSlider.snp.bottom).offset(100)
-            make.centerX.equalToSuperview()
-        }
-    }
-    
-    @objc func rollValueChanged(_ sender: UISlider) {
-        rollLabel.text = "Roll: \(String(format: "%.1f", sender.value))"
-        sendHeadPositionData()
-    }
-         
-    @objc func pitchValueChanged(_ sender: UISlider) {
-        pitchLabel.text = "Pitch: \(String(format: "%.1f", sender.value))"
-        sendHeadPositionData()
-    }
-         
-    @objc func yawValueChanged(_ sender: UISlider) {
-        yawLabel.text = "Yaw: \(String(format: "%.1f", sender.value))"
-        sendHeadPositionData()
-    }
-    
-    func sendHeadPositionData() {
-        let position = HeadRotation(
-            roll: rollSlider.value.roundToFirst(),
-            pitch: pitchSlider.value.roundToFirst(),
-            yaw: yawSlider.value.roundToFirst()
-        )
-        AudioService.shared.sendHeadPosition(position)
     }
 }
 
-extension ViewController {
-    @objc func playMusic() {
-        AudioService.shared.playStreamingFromServer()
+extension ViewController: HPMotionDelegate {
+    func isHeadPhoneAvailable(_ available: Bool) {
+        headphoneLabel.text = "HeadPhone 🔴"
+    }
+    
+    func didHeadPhoneConnected() {
+        updateHeadPhoneLabel(true)
+    }
+    
+    func didHeadPhoneDisconnected() {
+        updateHeadPhoneLabel(false)
+    }
+    
+    func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
+        // TODO: - 머리 각도 전송
+        updateHeadRotaionLabel(headRotation)
+        AudioService.shared.sendHeadPosition(headRotation)
+    }
+    
+    private func updateHeadPhoneLabel(_ connected: Bool) {
+        headphoneLabel.text = connected ? "HeadPhone 🟢" : "HeadPhone 🔴"
+    }
+    
+    private func updateHeadRotaionLabel(_ headRotation: HeadRotation) {
+        rollLabel.text = "Roll: \(headRotation.roll)"
+        pitchLabel.text = "Pitch: \(headRotation.pitch)"
+        yawLabel.text = "Pitch: \(headRotation.yaw)"
     }
 }
 

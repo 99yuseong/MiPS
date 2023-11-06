@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4214AC8F2ACC3DFD00B6755C /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4214AC8E2ACC3DFD00B6755C /* Instrument.swift */; };
 		4214AC932ACC75AA00B6755C /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4214AC922ACC75AA00B6755C /* Audio.swift */; };
+		421B4FE02AF0C2E100DF8DE3 /* HPMotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421B4FDF2AF0C2E100DF8DE3 /* HPMotionService.swift */; };
+		421B4FE22AF0CFF900DF8DE3 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421B4FE12AF0CFF900DF8DE3 /* Double+.swift */; };
 		42505F6E2ABB3CB800B8217F /* CSVImporter in Frameworks */ = {isa = PBXBuildFile; productRef = 42505F6D2ABB3CB800B8217F /* CSVImporter */; };
 		4251BCD32AD6FFC3005C1171 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD22AD6FFC3005C1171 /* Global.swift */; };
 		4251BCD62AD703BC005C1171 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD52AD703BC005C1171 /* Data+.swift */; };
@@ -18,6 +20,8 @@
 		4251BCDE2AD7D309005C1171 /* SoundSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCDD2AD7D309005C1171 /* SoundSource.swift */; };
 		42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 42B1040E2AD6CA2400FABEE2 /* Starscream */; };
 		42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B104102AD6CA3100FABEE2 /* NetworkService.swift */; };
+		42E1BE3B2ADC40A600D89E70 /* TLAnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1BE3A2ADC40A600D89E70 /* TLAnalogJoystick.swift */; };
+		42E1BE3D2ADC40C200D89E70 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1BE3C2ADC40C200D89E70 /* GameScene.swift */; };
 		42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */; };
 		42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */; };
 		42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8C7022AB9E81900A65B4D /* ViewController.swift */; };
@@ -33,6 +37,8 @@
 /* Begin PBXFileReference section */
 		4214AC8E2ACC3DFD00B6755C /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		4214AC922ACC75AA00B6755C /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		421B4FDF2AF0C2E100DF8DE3 /* HPMotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPMotionService.swift; sourceTree = "<group>"; };
+		421B4FE12AF0CFF900DF8DE3 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		4251BCD22AD6FFC3005C1171 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		4251BCD52AD703BC005C1171 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		4251BCD72AD7065F005C1171 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -40,6 +46,8 @@
 		4251BCDB2AD7C582005C1171 /* Float+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+.swift"; sourceTree = "<group>"; };
 		4251BCDD2AD7D309005C1171 /* SoundSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSource.swift; sourceTree = "<group>"; };
 		42B104102AD6CA3100FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		42E1BE3A2ADC40A600D89E70 /* TLAnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLAnalogJoystick.swift; sourceTree = "<group>"; };
+		42E1BE3C2ADC40C200D89E70 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		42F8C6FB2AB9E81900A65B4D /* MiPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F8C6FE2AB9E81900A65B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F8C7002AB9E81900A65B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +81,7 @@
 				4251BCD52AD703BC005C1171 /* Data+.swift */,
 				4251BCD72AD7065F005C1171 /* Array+.swift */,
 				4251BCDB2AD7C582005C1171 /* Float+.swift */,
+				421B4FE12AF0CFF900DF8DE3 /* Double+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -97,6 +106,7 @@
 		42E1BE352ADC392800D89E70 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				42E1BE3C2ADC40C200D89E70 /* GameScene.swift */,
 				42F8C7022AB9E81900A65B4D /* ViewController.swift */,
 			);
 			path = VC;
@@ -116,6 +126,8 @@
 			children = (
 				42F8C71B2AB9FDB000A65B4D /* AudioService.swift */,
 				42B104102AD6CA3100FABEE2 /* NetworkService.swift */,
+				421B4FDF2AF0C2E100DF8DE3 /* HPMotionService.swift */,
+				42E1BE3A2ADC40A600D89E70 /* TLAnalogJoystick.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -265,7 +277,11 @@
 				42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */,
 				4251BCD82AD7065F005C1171 /* Array+.swift in Sources */,
 				4251BCDA2AD7C2FC005C1171 /* HeadRotation.swift in Sources */,
+				42E1BE3D2ADC40C200D89E70 /* GameScene.swift in Sources */,
+				42E1BE3B2ADC40A600D89E70 /* TLAnalogJoystick.swift in Sources */,
+				421B4FE02AF0C2E100DF8DE3 /* HPMotionService.swift in Sources */,
 				4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */,
+				421B4FE22AF0CFF900DF8DE3 /* Double+.swift in Sources */,
 				4251BCD32AD6FFC3005C1171 /* Global.swift in Sources */,
 				42F8C71E2ABA018900A65B4D /* Source.swift in Sources */,
 				42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */,

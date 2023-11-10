@@ -13,6 +13,8 @@ import SpriteKit
 
 final class ViewController: UIViewController {
     
+    private let audioService = AudioService()
+    
     // MARK: - UI
     private var rollLabel = UILabel().then {
         $0.text = "Roll: 0.0"
@@ -41,6 +43,7 @@ final class ViewController: UIViewController {
         configureAddViews()
         configureLayout()
         HPMotionService.shared.delegate = self
+        audioService.delegate = self
         
 //        let scene = GameScene(size: self.view.bounds.size)
 //        scene.backgroundColor = .white
@@ -59,7 +62,7 @@ final class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AudioService.shared.playStreamingFromServer()
+        audioService.play()
     }
     
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask  {
@@ -101,6 +104,39 @@ final class ViewController: UIViewController {
     }
 }
 
+extension ViewController: AudioServiceDelegate {
+    func willAudioPlayOnServer() {
+        NetworkService.shared.setSocketEvent { [weak self] event in
+            guard let self = self else { return }
+            
+            switch event {
+            case .binary(let data):
+                DispatchQueue.global().async { [self] in
+                    self.audioService.scheduleBuffer(data)
+                }
+            default:
+                break
+            }
+        }
+        
+        NetworkService.shared.connectSocket()
+    }
+    
+    func willAudioEndOnServer() {
+        //
+    }
+    
+    func didAudioPlayOnServer() {
+        //
+    }
+    
+    func didAudioEndOnServer() {
+        NetworkService.shared.disconnectSocket()
+    }
+    
+    
+}
+
 extension ViewController: HPMotionDelegate {
     func isHeadPhoneAvailable(_ available: Bool) {
         headphoneLabel.text = "HeadPhone 🔴"
@@ -115,9 +151,8 @@ extension ViewController: HPMotionDelegate {
     }
     
     func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
-        // TODO: - 머리 각도 전송
         updateHeadRotaionLabel(headRotation)
-        AudioService.shared.sendHeadPosition(headRotation)
+        sendHeadRotation(headRotation)
     }
     
     private func updateHeadPhoneLabel(_ connected: Bool) {
@@ -128,6 +163,12 @@ extension ViewController: HPMotionDelegate {
         rollLabel.text = "Roll: \(headRotation.roll)"
         pitchLabel.text = "Pitch: \(headRotation.pitch)"
         yawLabel.text = "Pitch: \(headRotation.yaw)"
+    }
+    
+    private func sendHeadRotation(_ headRotation: HeadRotation) {
+        guard let headRotation = headRotation.toJsonString() else { return }
+        
+        NetworkService.shared.sendMessage(headRotation)
     }
 }
 

@@ -8,7 +8,11 @@
 import Foundation
 
 extension Double {
-    func toDegrees() -> Float {
-        return Float(180 / .pi * self)
+    func toDegrees() -> Double {
+        return self * 180 / .pi
+    }
+    
+    func roundToFirst() -> Double {
+        (self * 10).rounded() / 10
     }
 }

@@ -62,7 +62,7 @@ final class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        audioService.play()
+        audioService.connectServer()
     }
     
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask  {
@@ -110,6 +110,10 @@ extension ViewController: AudioServiceDelegate {
             guard let self = self else { return }
             
             switch event {
+            case .text(let jsonString):
+                DispatchQueue.global().async { [self] in
+                    self.audioService.scheduleBuffer(jsonString)
+                }
             case .binary(let data):
                 DispatchQueue.global().async { [self] in
                     self.audioService.scheduleBuffer(data)

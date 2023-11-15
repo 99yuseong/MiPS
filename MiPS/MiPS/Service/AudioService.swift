@@ -20,6 +20,12 @@ class AudioService {
     // MARK: - Property
     weak var delegate: AudioServiceDelegate?
     
+    private var bufferArray: [Int:AVAudioPCMBuffer] = [:]
+    private var curIndex: Int = 0
+    
+    let queue = DispatchQueue(label: "com.example.myqueue")
+//    private let highPriorityQueue = DispatchQueue.global(qos: .userInitiated)
+    
     private var audioEngine = AVAudioEngine()
     private var playerNode = AVAudioPlayerNode()
     private var soundEffect: AVAudioPlayer?
@@ -47,15 +53,76 @@ class AudioService {
 
 // MARK: - 음원 버퍼
 extension AudioService {
-    public func play() {
+    public func connectServer() {
         delegate?.willAudioPlayOnServer()
-        playerNode.play()
+    }
+    
+    func scheduleBuffers() {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            var bufferCount: Int = 0
+            
+            queue.sync {
+                bufferCount = self.bufferArray.count
+            }
+            
+            while bufferCount > curIndex + 5 {
+                let index = curIndex
+                var buffers: [AVAudioPCMBuffer] = []
+                
+                queue.sync {
+                    for i in index..<index + 5 {
+                        buffers.append(self.bufferArray[i]!)
+                        self.bufferArray.removeValue(forKey: i)
+                    }
+                }
+                
+                for i in 0..<5 {
+                    playerNode.scheduleBuffer(buffers[i])
+                }
+
+                curIndex += 5
+            }
+        }
     }
     
     func scheduleBuffer(_ data: Data) {
         let floatArray = data.byteToFloat2DArray()
         let buffer = floatArray.toStereoBuffer()
-        playerNode.scheduleBuffer(buffer)
+        
+//        bufferArray[bufferStruct.index] = buffer
+    }
+    
+    func scheduleBuffer(_ jsonString: String) {
+        guard let bufferStruct = decodeJsonToBuffer(jsonString) else { return }
+        
+        let buffer = bufferStruct.toStereoBuffer()
+        let index = bufferStruct.index
+        var bufferCount: Int = 0
+        
+        queue.sync {
+            bufferArray[index] = buffer
+            bufferCount = self.bufferArray.count
+        }
+        
+        if bufferCount > curIndex + 5 {
+            scheduleBuffers()
+            print("buffercount: \(bufferCount), curIndex: \(curIndex)")
+        }
+        
+        if !playerNode.isPlaying {
+            playerNode.play()
+        }
+    }
+    
+    private func decodeJsonToBuffer(_ jsonString: String) -> AudioBuffer? {
+        let decoder = JSONDecoder()
+        
+        guard let jsonData = jsonString.data(using: .utf8),
+              let audioBuffer = try? decoder.decode(AudioBuffer.self, from: jsonData)
+        else { return nil }
+        
+        return audioBuffer
     }
 }
 

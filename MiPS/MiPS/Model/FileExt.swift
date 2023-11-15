@@ -20,4 +20,3 @@ enum DataExt: String, FileExt {
     
     case csv = "csv"
 }
-

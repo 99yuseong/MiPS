@@ -65,10 +65,12 @@ extension NetworkService: WebSocketDelegate {
             alert("websocket is disconnected: \(reason) with code: \(code)")
         
         case .text(let string):
-            alert("Received text: \(string)")
+//            alert("Received text: \(string.count)")
+            break
         
         case .binary(let data):
-            alert("Received data: \(data.count)")
+//            alert("Received data: \(data.count)")
+            break
         
         case .ping(_):
             break

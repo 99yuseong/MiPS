@@ -111,13 +111,9 @@ extension ViewController: AudioServiceDelegate {
             
             switch event {
             case .text(let jsonString):
-                DispatchQueue.global().async { [self] in
-                    self.audioService.scheduleBuffer(jsonString)
-                }
+                self.audioService.loadBufferSemaphore(jsonString)
             case .binary(let data):
-                DispatchQueue.global().async { [self] in
-                    self.audioService.scheduleBuffer(data)
-                }
+                self.audioService.scheduleBuffer(data)
             default:
                 break
             }

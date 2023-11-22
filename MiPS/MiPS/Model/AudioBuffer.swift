@@ -10,6 +10,7 @@ import AVFoundation
 
 struct AudioBuffer: Codable {
     var index: Int
+    var count: Int
     var left: [Float]
     var right: [Float]
     
@@ -34,5 +35,24 @@ struct AudioBuffer: Codable {
         }
 
         return buffer
+    }
+    
+    static func decodeJsonToBuffer(_ jsonString: String) -> AudioBuffer? {
+        let decoder = JSONDecoder()
+        
+        guard let jsonData = jsonString.data(using: .utf8),
+              let audioBuffer = try? decoder.decode(self, from: jsonData)
+        else { return nil }
+        
+        return audioBuffer
+    }
+    
+    static func + (left: AudioBuffer, right: AudioBuffer) -> AudioBuffer {
+        return AudioBuffer(
+            index: min(left.index, right.index),
+            count: left.count + right.count,
+            left: left.left + right.left,
+            right: left.right + right.right
+        )
     }
 }

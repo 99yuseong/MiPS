@@ -14,11 +14,11 @@ struct AudioBuffer: Codable {
     var left: [Float]
     var right: [Float]
     
-    func toStereoBuffer(rate: Double = 44100) -> AVAudioPCMBuffer {
+    func toStereoBuffer() -> AVAudioPCMBuffer {
         let bufferSize = min(left.count, right.count)
         
         let format = AVAudioFormat(
-            standardFormatWithSampleRate: rate,
+            standardFormatWithSampleRate: 44100,
             channels: 2
         )!
         

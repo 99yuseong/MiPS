@@ -36,6 +36,12 @@ final class ViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 10)
     }
     
+    private lazy var playBtn = UIButton().then {
+        $0.setTitle("play", for: .normal)
+        $0.layer.backgroundColor = UIColor.black.cgColor
+        $0.addTarget(self, action: #selector(playBtnTap), for: .touchUpInside)
+    }
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +85,7 @@ final class ViewController: UIViewController {
         view.addSubview(pitchLabel)
         view.addSubview(yawLabel)
         view.addSubview(headphoneLabel)
+        view.addSubview(playBtn)
     }
     
     private func configureLayout() {
@@ -101,6 +108,26 @@ final class ViewController: UIViewController {
             make.top.equalTo(yawLabel.snp.bottom).offset(8)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
+        
+        playBtn.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-300)
+        }
+    }
+}
+
+extension ViewController {
+    @objc func playBtnTap() {
+        if playBtn.titleLabel?.text == "play" {
+            audioService.play()
+            print("start play!")
+            playBtn.setTitle("pause", for: .normal)
+        } else {
+            audioService.pause()
+            print("paused!")
+            playBtn.setTitle("play", for: .normal)
+        }
     }
 }
 
@@ -112,8 +139,8 @@ extension ViewController: AudioServiceDelegate {
             switch event {
             case .text(let jsonString):
                 self.audioService.loadBufferSemaphore(jsonString)
-            case .binary(let data):
-                self.audioService.scheduleBuffer(data)
+//            case .binary(let data):
+//                self.audioService.scheduleBuffer(data)
             default:
                 break
             }
@@ -172,3 +199,27 @@ extension ViewController: HPMotionDelegate {
     }
 }
 
+#if DEBUG
+
+import SwiftUI
+
+struct ViewController_ViewPresentable: UIViewControllerRepresentable {
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        ViewController()
+    }
+    
+    
+}
+
+struct ViewController_PreviewProvider : PreviewProvider {
+    static var previews: some View {
+        ViewController_ViewPresentable()
+            .ignoresSafeArea()
+    }
+}
+
+#endif

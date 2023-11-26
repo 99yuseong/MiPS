@@ -119,6 +119,7 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     @objc func playBtnTap() {
+        print(#fileID, #function, #line, "\(playBtn.titleLabel?.text)")
         if playBtn.titleLabel?.text == "play" {
             audioService.play()
             print("start play!")

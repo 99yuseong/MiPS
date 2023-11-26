@@ -22,6 +22,7 @@ class AudioService {
     
 //    private var bufferDictionary: [Int:AVAudioPCMBuffer] = [:]
     private var bufferArray: [AudioBuffer] = []
+    private var bufferIndex: Int = 0
     private var curIndex: Int = 0
     private var isSchedule: Bool = false
     
@@ -92,30 +93,26 @@ extension AudioService {
 //    }
     
     func play() {
+        isPaused = false
+
         if !playerNode.isPlaying {
             playerNode.play()
             if isFirst {
                 isFirst = false
-                buffer1 = prepareBuffer(curIndex: curIndex)
+                buffer1 = prepareBuffer(curIndex: bufferIndex)
                 schduleBuffer1()
-            } else {
-                if isBuffer1 {
-                    schduleBuffer1()
-                } else {
-                    schduleBuffer2()
-                }
             }
-            
         }
     }
     
     func pause() {
         playerNode.pause()
+        isPaused = true
     }
     
     func prepareBuffer(curIndex: Int) -> AVAudioPCMBuffer? {
-        print(curIndex)
-        print(bufferArray.count)
+//        print(curIndex)
+//        print(bufferArray.count)
         let bufferCount = bufferArray.count
         
         guard curIndex < bufferCount else {
@@ -131,67 +128,74 @@ extension AudioService {
         for buf in bufferArray[curIndex + 1..<lastIndex] {
             buffer = buffer + buf
         }
-        self.curIndex = lastIndex
+        self.bufferIndex = lastIndex
         
         return buffer.toStereoBuffer()
     }
     
-    func schedulBuffer(_ curIndex: Int) {
-        if isBuffer1 {
-            playerNode.scheduleBuffer(buffer1) { [weak self] in
-                guard let self = self else { return }
-                self.isBuffer1 = false
-                print("play done!")
-                schedulBuffer(self.curIndex)
-            }
-            buffer2 = prepareBuffer(curIndex: curIndex)
-        } else {
-            playerNode.scheduleBuffer(buffer2) { [weak self] in
-                guard let self = self else { return }
-                self.isBuffer1 = true
-                print("play done!")
-                schedulBuffer(self.curIndex)
-            }
-            buffer1 = prepareBuffer(curIndex: curIndex)
-        }
-        
-//        playerNode.scheduleBuffer(buffer) {
-//            schedulBuffer(curIndex+1)
+//    func schedulBuffer(_ curIndex: Int) {
+//        if isBuffer1 {
+//            playerNode.scheduleBuffer(buffer1) { [weak self] in
+//                guard let self = self else { return }
+//                self.isBuffer1 = false
+//                print("play done!")
+//                schedulBuffer(self.curIndex)
+//            }
+//            buffer2 = prepareBuffer(curIndex: curIndex)
+//        } else {
+//            playerNode.scheduleBuffer(buffer2) { [weak self] in
+//                guard let self = self else { return }
+//                self.isBuffer1 = true
+//                print("play done!")
+//                schedulBuffer(self.curIndex)
+//            }
+//            buffer1 = prepareBuffer(curIndex: curIndex)
 //        }
-    }
+//        
+////        playerNode.scheduleBuffer(buffer) {
+////            schedulBuffer(curIndex+1)
+////        }
+//    }
     
     func schduleBuffer1() {
-        guard isPaused else { return }
+        guard !isPaused else {
+            isBuffer1 = true
+            return
+        }
         
-        guard curIndex < bufferArray.count else {
+        guard bufferIndex < bufferArray.count else {
             buffer1 = nil
             print("buffer1 Done.")
             return
         }
         
         playerNode.scheduleBuffer(buffer1) {
-            self.isBuffer1 = false
+            self.curIndex += self.interval
+//            self.isBuffer1 = false
             self.schduleBuffer2()
             print("play done!")
         }
-        buffer2 = prepareBuffer(curIndex: curIndex)
+        buffer2 = prepareBuffer(curIndex: bufferIndex)
     }
     
     func schduleBuffer2() {
-        guard isPaused else { return }
+        guard !isPaused else {
+            isBuffer1 = false
+            return
+        }
         
-        guard curIndex < bufferArray.count else {
+        guard bufferIndex < bufferArray.count else {
             buffer2 = nil
             print("buffer2 Done.")
             return
         }
         
         playerNode.scheduleBuffer(buffer2) {
-            self.isBuffer1 = true
+            self.curIndex += self.interval
             self.schduleBuffer1()
             print("play done!")
         }
-        buffer1 = prepareBuffer(curIndex: curIndex)
+        buffer1 = prepareBuffer(curIndex: bufferIndex)
     }
     
 //    func schedulBuffersSemaphore(_ bufferCount: Int) {

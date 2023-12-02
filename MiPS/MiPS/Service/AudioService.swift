@@ -32,7 +32,7 @@ class AudioService {
     
 //    let queue = DispatchQueue(label: "com.example.myqueue")
 //    private let highPriorityQueue = DispatchQueue.global(qos: .userInitiated)
-    let interval = 5
+    let interval = 1
     var buffer1: AVAudioPCMBuffer!
     var buffer2: AVAudioPCMBuffer!
     var buffer3: AVAudioPCMBuffer!
@@ -59,6 +59,19 @@ class AudioService {
         } catch {
             alert("Failed to start engine: \(error)")
         }
+    }
+}
+
+extension AudioService {
+    public func sendPlayingData(_ headRotation: HeadRotation) {
+        guard let playingData = PlayingData(
+            headRotation: headRotation,
+            curIndex: curIndex
+        ).toJsonString() else { return }
+        
+        print("sending: \(curIndex)")
+        
+        NetworkService.shared.sendMessage(playingData)
     }
 }
 
@@ -100,8 +113,8 @@ extension AudioService {
             playerNode.play()
             if isFirst {
                 isFirst = false
-                buffer1 = prepareBuffer(curIndex: bufferIndex)
-                buffer2 = prepareBuffer(curIndex: bufferIndex)
+                buffer1 = prepareBuffer()
+                buffer2 = prepareBuffer()
                 schduleBuffer1()
             }
         }
@@ -112,24 +125,27 @@ extension AudioService {
         isPaused = true
     }
     
-    func prepareBuffer(curIndex: Int) -> AVAudioPCMBuffer? {
-        print(curIndex)
-        print(bufferArray.count)
+    func prepareBuffer() -> AVAudioPCMBuffer? {
+//        print(curIndex)
+//        print(bufferArray.count)
+//        print(bufferArray.count)
         let bufferCount = bufferArray.count
         
-        guard curIndex < bufferCount else {
-            bufferArray.removeAll()
-            print("play Done.")
+        guard bufferIndex < bufferCount else {
+//            bufferArray.removeAll()
+//            print("play Done.")
+            print("curIndex: \(curIndex), bufferCount: \(bufferCount)")
             return nil
         }
+        print("buffering: \(bufferIndex)")
+        let lastIndex = min(bufferCount, bufferIndex + interval)
         
-        let lastIndex = min(bufferCount, curIndex + interval)
+        var buffer = bufferArray[bufferIndex]
         
-        var buffer = bufferArray[curIndex]
-        
-        for buf in bufferArray[curIndex + 1..<lastIndex] {
+        for buf in bufferArray[bufferIndex + 1..<lastIndex] {
             buffer = buffer + buf
         }
+        
         self.bufferIndex = lastIndex
         
         return buffer.toStereoBuffer()
@@ -164,7 +180,6 @@ extension AudioService {
             isBuffer1 = true
             return
         }
-        
 //        guard bufferIndex < bufferArray.count else {
 //            buffer1 = nil
 //            print("buffer1 Done.")
@@ -173,13 +188,16 @@ extension AudioService {
         
         playerNode.scheduleBuffer(buffer1) {
             self.curIndex += self.interval
+            print("playing \(self.curIndex)")
 //            self.isBuffer1 = false
             self.schduleBuffer3()
-            print("play done!")
+//            print("play done!")
         }
-        playerNode.scheduleBuffer(buffer2)
-        buffer3 = prepareBuffer(curIndex: bufferIndex)
-        buffer1 = prepareBuffer(curIndex: bufferIndex)
+        playerNode.scheduleBuffer(buffer2) {
+            self.curIndex += self.interval
+        }
+        buffer3 = prepareBuffer()
+        buffer1 = prepareBuffer()
     }
     
     func schduleBuffer2() {
@@ -196,12 +214,15 @@ extension AudioService {
         
         playerNode.scheduleBuffer(buffer2) {
             self.curIndex += self.interval
+            print("playing \(self.curIndex)")
             self.schduleBuffer1()
-            print("play done!")
+//            print("play done!")
         }
-        playerNode.scheduleBuffer(buffer3)
-        buffer1 = prepareBuffer(curIndex: bufferIndex)
-        buffer2 = prepareBuffer(curIndex: bufferIndex)
+        playerNode.scheduleBuffer(buffer3) {
+            self.curIndex += self.interval
+        }
+        buffer1 = prepareBuffer()
+        buffer2 = prepareBuffer()
     }
     
     func schduleBuffer3() {
@@ -209,6 +230,7 @@ extension AudioService {
             isBuffer1 = false
             return
         }
+        
         
 //        guard bufferIndex < bufferArray.count else {
 //            buffer3 = nil
@@ -218,12 +240,15 @@ extension AudioService {
         
         playerNode.scheduleBuffer(buffer3) {
             self.curIndex += self.interval
+            print("playing \(self.curIndex)")
             self.schduleBuffer2()
-            print("play done!")
+//            print("play done!")
         }
-        playerNode.scheduleBuffer(buffer1)
-        buffer2 = prepareBuffer(curIndex: bufferIndex)
-        buffer3 = prepareBuffer(curIndex: bufferIndex)
+        playerNode.scheduleBuffer(buffer1) {
+            self.curIndex += self.interval
+        }
+        buffer2 = prepareBuffer()
+        buffer3 = prepareBuffer()
     }
     
 //    func schedulBuffersSemaphore(_ bufferCount: Int) {
@@ -243,16 +268,17 @@ extension AudioService {
 
         let index = bufferStruct.index
         let semaphore = DispatchSemaphore(value: 0)
-//        print("버퍼 스케쥴링")
-//        playerNode.play()
-//        playerNode.scheduleBuffer(bufferStruct.toStereoBuffer())
-        
-        DispatchQueue.global().async { [self] in
-            if bufferArray.count > index {
-                bufferArray[index] = bufferStruct
+
+//        print("buffer: \(index)")
+        DispatchQueue.global().async { [weak self] in
+            
+            guard let self = self else { return }
+            if self.bufferArray.count > index {
+                self.bufferArray[index] = bufferStruct
             } else {
-                bufferArray.append(bufferStruct)
+                self.bufferArray.append(bufferStruct)
             }
+//            print("loading: \(self.bufferArray.count) \(index)")
             
             semaphore.signal()
         }

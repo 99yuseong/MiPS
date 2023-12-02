@@ -14,6 +14,7 @@ import SpriteKit
 final class ViewController: UIViewController {
     
     private let audioService = AudioService()
+    var test: Int = 0
     
     // MARK: - UI
     private var rollLabel = UILabel().then {
@@ -140,6 +141,9 @@ extension ViewController: AudioServiceDelegate {
             switch event {
             case .text(let jsonString):
                 self.audioService.loadBufferSemaphore(jsonString)
+//                print("data: \(test)")
+                test += 1
+//                print("data come")
 //            case .binary(let data):
 //                self.audioService.scheduleBuffer(data)
             default:
@@ -161,8 +165,6 @@ extension ViewController: AudioServiceDelegate {
     func didAudioEndOnServer() {
         NetworkService.shared.disconnectSocket()
     }
-    
-    
 }
 
 extension ViewController: HPMotionDelegate {
@@ -180,7 +182,7 @@ extension ViewController: HPMotionDelegate {
     
     func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
         updateHeadRotaionLabel(headRotation)
-        sendHeadRotation(headRotation)
+        audioService.sendPlayingData(headRotation)
     }
     
     private func updateHeadPhoneLabel(_ connected: Bool) {
@@ -191,12 +193,6 @@ extension ViewController: HPMotionDelegate {
         rollLabel.text = "Roll: \(headRotation.roll)"
         pitchLabel.text = "Pitch: \(headRotation.pitch)"
         yawLabel.text = "Pitch: \(headRotation.yaw)"
-    }
-    
-    private func sendHeadRotation(_ headRotation: HeadRotation) {
-        guard let headRotation = headRotation.toJsonString() else { return }
-        
-        NetworkService.shared.sendMessage(headRotation)
     }
 }
 

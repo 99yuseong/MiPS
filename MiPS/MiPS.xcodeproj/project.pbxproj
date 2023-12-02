@@ -18,6 +18,7 @@
 		4251BCDE2AD7D309005C1171 /* SoundSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCDD2AD7D309005C1171 /* SoundSource.swift */; };
 		42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 42B1040E2AD6CA2400FABEE2 /* Starscream */; };
 		42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B104102AD6CA3100FABEE2 /* NetworkService.swift */; };
+		42BB8E2A2B19C0E400BAF846 /* PlayingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BB8E292B19C0E400BAF846 /* PlayingData.swift */; };
 		42C8656F2AFE76F9001D39DE /* FileExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C8656E2AFE76F9001D39DE /* FileExt.swift */; };
 		42C865712AFE770D001D39DE /* AudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C865702AFE770D001D39DE /* AudioBuffer.swift */; };
 		42E1BE3B2ADC40A600D89E70 /* TLAnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1BE3A2ADC40A600D89E70 /* TLAnalogJoystick.swift */; };
@@ -42,6 +43,7 @@
 		4251BCDB2AD7C582005C1171 /* Float+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+.swift"; sourceTree = "<group>"; };
 		4251BCDD2AD7D309005C1171 /* SoundSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSource.swift; sourceTree = "<group>"; };
 		42B104102AD6CA3100FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		42BB8E292B19C0E400BAF846 /* PlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingData.swift; sourceTree = "<group>"; };
 		42C8656E2AFE76F9001D39DE /* FileExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExt.swift; sourceTree = "<group>"; };
 		42C865702AFE770D001D39DE /* AudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBuffer.swift; sourceTree = "<group>"; };
 		42E1BE3A2ADC40A600D89E70 /* TLAnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLAnalogJoystick.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				4251BCDD2AD7D309005C1171 /* SoundSource.swift */,
 				42C8656E2AFE76F9001D39DE /* FileExt.swift */,
 				42C865702AFE770D001D39DE /* AudioBuffer.swift */,
+				42BB8E292B19C0E400BAF846 /* PlayingData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */,
 				421B4FE22AF0CFF900DF8DE3 /* Double+.swift in Sources */,
 				4251BCD32AD6FFC3005C1171 /* Global.swift in Sources */,
+				42BB8E2A2B19C0E400BAF846 /* PlayingData.swift in Sources */,
 				42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

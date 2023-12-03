@@ -20,6 +20,7 @@ class HPMotionService: NSObject {
     static let shared = HPMotionService()
     
     weak var delegate: HPMotionDelegate?
+    private var curHeadRot: HeadRotation = HeadRotation(roll: 0, pitch: 0, yaw: 0)
     
     private let manager = CMHeadphoneMotionManager()
 

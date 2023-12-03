@@ -14,7 +14,7 @@ import SpriteKit
 final class ViewController: UIViewController {
     
     private let audioService = AudioService()
-    var test: Int = 0
+    private var lastSentHeadRot = HeadRotation(roll: 0, pitch: 0, yaw: 0)
     
     // MARK: - UI
     private var rollLabel = UILabel().then {
@@ -120,15 +120,12 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     @objc func playBtnTap() {
-        print(#fileID, #function, #line, "\(playBtn.titleLabel?.text)")
         if playBtn.titleLabel?.text == "play" {
-            audioService.play()
-            print("start play!")
             playBtn.setTitle("pause", for: .normal)
+            audioService.play()
         } else {
-            audioService.pause()
-            print("paused!")
             playBtn.setTitle("play", for: .normal)
+            audioService.pause()
         }
     }
 }
@@ -141,11 +138,6 @@ extension ViewController: AudioServiceDelegate {
             switch event {
             case .text(let jsonString):
                 self.audioService.loadBufferSemaphore(jsonString)
-//                print("data: \(test)")
-                test += 1
-//                print("data come")
-//            case .binary(let data):
-//                self.audioService.scheduleBuffer(data)
             default:
                 break
             }
@@ -181,8 +173,12 @@ extension ViewController: HPMotionDelegate {
     }
     
     func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
+        if lastSentHeadRot.differOver(degree: 15, headRot: headRotation) {
+            audioService.sendPlayingData(headRotation)
+            lastSentHeadRot = headRotation
+            print(headRotation.roll, headRotation.pitch, headRotation.yaw)
+        }
         updateHeadRotaionLabel(headRotation)
-        audioService.sendPlayingData(headRotation)
     }
     
     private func updateHeadPhoneLabel(_ connected: Bool) {

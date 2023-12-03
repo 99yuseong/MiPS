@@ -38,4 +38,16 @@ extension HeadRotation: Equatable {
         
         return jsonString
     }
+    
+    func differOver(degree: Double, headRot: HeadRotation) -> Bool {
+        let rollChange = abs(self.roll - headRot.roll)
+        let pitchChange = abs(self.pitch - headRot.pitch)
+        let yawChange = abs(self.yaw - headRot.yaw)
+        
+        if rollChange >= degree || pitchChange >= degree || yawChange >= degree {
+            return true
+        } else {
+            return false
+        }
+    }
 }

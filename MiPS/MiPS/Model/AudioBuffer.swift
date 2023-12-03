@@ -10,7 +10,6 @@ import AVFoundation
 
 struct AudioBuffer: Codable {
     var index: Int
-    var count: Int
     var left: [Float]
     var right: [Float]
     
@@ -50,7 +49,6 @@ struct AudioBuffer: Codable {
     static func + (left: AudioBuffer, right: AudioBuffer) -> AudioBuffer {
         return AudioBuffer(
             index: min(left.index, right.index),
-            count: left.count + right.count,
             left: left.left + right.left,
             right: left.right + right.right
         )

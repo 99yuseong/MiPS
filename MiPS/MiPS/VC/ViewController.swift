@@ -173,11 +173,11 @@ extension ViewController: HPMotionDelegate {
     }
     
     func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
-        if lastSentHeadRot.differOver(degree: 15, headRot: headRotation) {
-            audioService.sendPlayingData(headRotation)
-            lastSentHeadRot = headRotation
-            print(headRotation.roll, headRotation.pitch, headRotation.yaw)
-        }
+//        if lastSentHeadRot.differOver(degree: 5, headRot: headRotation) {
+//            audioService.sendPlayingData(headRotation)
+//            lastSentHeadRot = headRotation
+//        }
+        audioService.sendPlayingData(headRotation)
         updateHeadRotaionLabel(headRotation)
     }
     

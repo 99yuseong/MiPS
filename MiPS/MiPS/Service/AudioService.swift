@@ -65,7 +65,7 @@ extension AudioService {
     public func sendPlayingData(_ headRotation: HeadRotation) {
         guard let playingData = PlayingData(
             headRotation: headRotation,
-            curIndex: curIndex + 2 * interval
+            curIndex: curIndex
         ).toJsonString() else { return }
         
         NetworkService.shared.sendMessage(playingData)
@@ -198,7 +198,7 @@ extension AudioService {
 
         let index = bufferStruct.index
         let semaphore = DispatchSemaphore(value: 0)
-
+        
         DispatchQueue.global().async { [weak self] in
             
             guard let self = self else { return }

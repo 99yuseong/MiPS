@@ -7,4 +7,4 @@
 
 import Foundation
 
-let SERVER_DEV: String = "http://172.17.1.41:8000/ws"
+let SERVER_DEV: String = "http://172.17.26.208:8000/ws"

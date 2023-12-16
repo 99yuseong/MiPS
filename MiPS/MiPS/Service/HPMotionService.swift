@@ -24,10 +24,9 @@ class HPMotionService: NSObject {
     
     private let manager = CMHeadphoneMotionManager()
 
-    private override init() {
+    override init() {
         super.init()
         manager.delegate = self
-        startUpdate()
     }
     
     deinit {
@@ -36,7 +35,7 @@ class HPMotionService: NSObject {
 }
 
 extension HPMotionService {
-    private func startUpdate() {
+    public func startUpdate() {
         guard isDeviceMotionAvailable()
         else { alert("Device not Supported"); return }
         

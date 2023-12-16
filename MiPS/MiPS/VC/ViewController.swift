@@ -49,7 +49,7 @@ final class ViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
-        HPMotionService.shared.delegate = self
+//        HPMotionService.shared.delegate = self
         audioService.delegate = self
         
 //        let scene = GameScene(size: self.view.bounds.size)

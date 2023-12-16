@@ -11,6 +11,14 @@ import Then
 
 final class InitViewController: UIViewController {
     
+    enum HPStatus: String {
+        case notSupported = "Device Not Supported"
+        case notConnected = "Please Connect HeadPhone"
+        case connected = "Start Music Spatialization"
+    }
+    
+    private var headPhoneStatus: HPStatus = .notSupported
+    
     // MARK: - UI
     private var mLabel = UILabel().then {
         $0.text = "M"
@@ -46,10 +54,11 @@ final class InitViewController: UIViewController {
     
     private var labelContainer = UIView()
     
-    private var buttonView = UIView().then {
+    private lazy var buttonView = UIView().then {
         $0.layer.borderColor = UIColor.white.cgColor
         $0.layer.borderWidth = 0.5
         $0.layer.cornerRadius = 8
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didButtonTap)))
     }
     
     private var buttonText = UILabel().then {
@@ -64,6 +73,8 @@ final class InitViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
+        HPMotionService.shared.delegate = self
+        HPMotionService.shared.startUpdate()
     }
     
     // MARK: - Configure
@@ -160,6 +171,33 @@ final class InitViewController: UIViewController {
         buttonText.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+    }
+}
+
+extension InitViewController: HPMotionDelegate {
+    func isHeadPhoneAvailable(_ available: Bool) {
+        headPhoneStatus = available ? .notConnected : .notSupported
+        buttonText.text = headPhoneStatus.rawValue
+    }
+    
+    func didHeadPhoneConnected() {
+        headPhoneStatus = .connected
+        buttonText.text = headPhoneStatus.rawValue
+    }
+    
+    func didHeadPhoneDisconnected() {
+        headPhoneStatus = .notConnected
+        buttonText.text = headPhoneStatus.rawValue
+    }
+    
+    func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
+        print("updated")
+    }
+}
+
+extension InitViewController {
+    @objc func didButtonTap() {
+        showToast(message: headPhoneStatus.rawValue)
     }
 }
 

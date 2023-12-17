@@ -29,9 +29,15 @@
 		427CAFC12B2AC95100EE5EEE /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427CAFB22B2ABDD200EE5EEE /* Montserrat-SemiBold.ttf */; };
 		427CAFC22B2AC95400EE5EEE /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427CAFB12B2ABDD200EE5EEE /* Montserrat-Thin.ttf */; };
 		427CAFC42B2D596700EE5EEE /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFC32B2D596700EE5EEE /* UIViewController+.swift */; };
+		427CAFC62B2D62A500EE5EEE /* SelectMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFC52B2D62A500EE5EEE /* SelectMusicViewController.swift */; };
+		427CAFCB2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCA2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift */; };
+		427CAFCD2B2D717E00EE5EEE /* InstrumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCC2B2D717E00EE5EEE /* InstrumentsView.swift */; };
+		427CAFCF2B2ED58E00EE5EEE /* Instruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCE2B2ED58E00EE5EEE /* Instruments.swift */; };
+		427CAFD52B2EFED100EE5EEE /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFD42B2EFED100EE5EEE /* Music.swift */; };
+		427CAFD72B2F80D900EE5EEE /* PositioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFD62B2F80D900EE5EEE /* PositioningViewController.swift */; };
 		42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 42B1040E2AD6CA2400FABEE2 /* Starscream */; };
 		42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B104102AD6CA3100FABEE2 /* NetworkService.swift */; };
-		42B5FED02B2993FF008B2B38 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B5FECF2B2993FF008B2B38 /* InitViewController.swift */; };
+		42B5FED02B2993FF008B2B38 /* ConnectHPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B5FECF2B2993FF008B2B38 /* ConnectHPViewController.swift */; };
 		42BB8E2A2B19C0E400BAF846 /* PlayingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BB8E292B19C0E400BAF846 /* PlayingData.swift */; };
 		42C8656F2AFE76F9001D39DE /* FileExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C8656E2AFE76F9001D39DE /* FileExt.swift */; };
 		42C865712AFE770D001D39DE /* AudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C865702AFE770D001D39DE /* AudioBuffer.swift */; };
@@ -69,8 +75,14 @@
 		427CAFB62B2ABF0300EE5EEE /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		427CAFB82B2AC28B00EE5EEE /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		427CAFC32B2D596700EE5EEE /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		427CAFC52B2D62A500EE5EEE /* SelectMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMusicViewController.swift; sourceTree = "<group>"; };
+		427CAFCA2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMusicCollectionViewCell.swift; sourceTree = "<group>"; };
+		427CAFCC2B2D717E00EE5EEE /* InstrumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsView.swift; sourceTree = "<group>"; };
+		427CAFCE2B2ED58E00EE5EEE /* Instruments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruments.swift; sourceTree = "<group>"; };
+		427CAFD42B2EFED100EE5EEE /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		427CAFD62B2F80D900EE5EEE /* PositioningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositioningViewController.swift; sourceTree = "<group>"; };
 		42B104102AD6CA3100FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		42B5FECF2B2993FF008B2B38 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
+		42B5FECF2B2993FF008B2B38 /* ConnectHPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectHPViewController.swift; sourceTree = "<group>"; };
 		42BB8E292B19C0E400BAF846 /* PlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingData.swift; sourceTree = "<group>"; };
 		42C8656E2AFE76F9001D39DE /* FileExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExt.swift; sourceTree = "<group>"; };
 		42C865702AFE770D001D39DE /* AudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBuffer.swift; sourceTree = "<group>"; };
@@ -131,6 +143,15 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		427CAFD82B2F816500EE5EEE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				427CAFCA2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift */,
+				427CAFCC2B2D717E00EE5EEE /* InstrumentsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		42E1BE332ADC38CE00D89E70 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +166,7 @@
 			children = (
 				4251BCD22AD6FFC3005C1171 /* Global.swift */,
 				427CAFB62B2ABF0300EE5EEE /* FontStyle.swift */,
+				427CAFCE2B2ED58E00EE5EEE /* Instruments.swift */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -152,9 +174,11 @@
 		42E1BE352ADC392800D89E70 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				42B5FECF2B2993FF008B2B38 /* ConnectHPViewController.swift */,
+				427CAFC52B2D62A500EE5EEE /* SelectMusicViewController.swift */,
+				427CAFD62B2F80D900EE5EEE /* PositioningViewController.swift */,
 				42E1BE3C2ADC40C200D89E70 /* GameScene.swift */,
 				42F8C7022AB9E81900A65B4D /* ViewController.swift */,
-				42B5FECF2B2993FF008B2B38 /* InitViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -202,6 +226,7 @@
 				42F8C7222ABA033900A65B4D /* Resource */,
 				42E1BE332ADC38CE00D89E70 /* Utils */,
 				42F8C7212ABA031C00A65B4D /* Model */,
+				427CAFD82B2F816500EE5EEE /* View */,
 				42E1BE352ADC392800D89E70 /* VC */,
 				42E1BE372ADC397D00D89E70 /* Service */,
 			);
@@ -216,6 +241,7 @@
 				42C8656E2AFE76F9001D39DE /* FileExt.swift */,
 				42C865702AFE770D001D39DE /* AudioBuffer.swift */,
 				42BB8E292B19C0E400BAF846 /* PlayingData.swift */,
+				427CAFD42B2EFED100EE5EEE /* Music.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,24 +352,30 @@
 				42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */,
 				42C865712AFE770D001D39DE /* AudioBuffer.swift in Sources */,
 				42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */,
+				427CAFD72B2F80D900EE5EEE /* PositioningViewController.swift in Sources */,
 				42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */,
 				4251BCD62AD703BC005C1171 /* Data+.swift in Sources */,
 				42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */,
 				4251BCD82AD7065F005C1171 /* Array+.swift in Sources */,
 				4251BCDA2AD7C2FC005C1171 /* HeadRotation.swift in Sources */,
 				427CAFAB2B2ABB8E00EE5EEE /* UIColor+.swift in Sources */,
+				427CAFC62B2D62A500EE5EEE /* SelectMusicViewController.swift in Sources */,
+				427CAFCD2B2D717E00EE5EEE /* InstrumentsView.swift in Sources */,
 				42E1BE3D2ADC40C200D89E70 /* GameScene.swift in Sources */,
 				42C8656F2AFE76F9001D39DE /* FileExt.swift in Sources */,
+				427CAFD52B2EFED100EE5EEE /* Music.swift in Sources */,
 				42E1BE3B2ADC40A600D89E70 /* TLAnalogJoystick.swift in Sources */,
 				421B4FE02AF0C2E100DF8DE3 /* HPMotionService.swift in Sources */,
 				427CAFC42B2D596700EE5EEE /* UIViewController+.swift in Sources */,
 				427CAFB92B2AC28B00EE5EEE /* UILabel+.swift in Sources */,
 				4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */,
+				427CAFCB2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift in Sources */,
 				421B4FE22AF0CFF900DF8DE3 /* Double+.swift in Sources */,
 				4251BCD32AD6FFC3005C1171 /* Global.swift in Sources */,
 				42BB8E2A2B19C0E400BAF846 /* PlayingData.swift in Sources */,
-				42B5FED02B2993FF008B2B38 /* InitViewController.swift in Sources */,
+				42B5FED02B2993FF008B2B38 /* ConnectHPViewController.swift in Sources */,
 				42F8C7012AB9E81900A65B4D /* SceneDelegate.swift in Sources */,
+				427CAFCF2B2ED58E00EE5EEE /* Instruments.swift in Sources */,
 				427CAFB72B2ABF0300EE5EEE /* FontStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

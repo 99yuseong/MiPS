@@ -1,5 +1,5 @@
 //
-//  InitViewController.swift
+//  ConnectHPViewController.swift
 //  MiPS
 //
 //  Created by 남유성 on 12/13/23.
@@ -8,14 +8,18 @@
 import UIKit
 import SnapKit
 import Then
+import SpriteKit
 
-final class InitViewController: UIViewController {
+final class ConnectHPViewController: UIViewController {
     
     enum HPStatus: String {
         case notSupported = "Device Not Supported"
         case notConnected = "Please Connect HeadPhone"
         case connected = "Start Music Spatialization"
     }
+    
+    var spriteView: SKView!
+//    var scene: SpotlightScene!   // GameScene은 위에서 설명한 SKScene의 서브클래스입니다.
     
     private var headPhoneStatus: HPStatus = .notSupported
     
@@ -174,7 +178,20 @@ final class InitViewController: UIViewController {
     }
 }
 
-extension InitViewController: HPMotionDelegate {
+extension ConnectHPViewController {
+    @objc func didButtonTap() {
+        switch headPhoneStatus {
+        case .connected:
+            let selectMusicVC = SelectMusicViewController()
+            self.navigationController?.pushViewController(selectMusicVC, animated: true)
+        default:
+            showToast(message: headPhoneStatus.rawValue)
+        }
+    }
+}
+
+
+extension ConnectHPViewController: HPMotionDelegate {
     func isHeadPhoneAvailable(_ available: Bool) {
         headPhoneStatus = available ? .notConnected : .notSupported
         buttonText.text = headPhoneStatus.rawValue
@@ -191,13 +208,7 @@ extension InitViewController: HPMotionDelegate {
     }
     
     func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
-        print("updated")
-    }
-}
-
-extension InitViewController {
-    @objc func didButtonTap() {
-        showToast(message: headPhoneStatus.rawValue)
+//        print("updated")
     }
 }
 
@@ -211,7 +222,7 @@ struct InitViewController_ViewPresentable: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> some UIViewController {
-        InitViewController()
+        ConnectHPViewController()
     }
     
     

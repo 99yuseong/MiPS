@@ -21,15 +21,15 @@ class InstrumentsView: UIView {
     private var width: CGFloat {
         switch size {
         case .large:
-            20
+            36
         case .small:
-            20
+            28
         }
     }
     
     private var instrumentLabel = UILabel().then {
         $0.textColor = .white
-        $0.font = Font.semiBold?.withSize(10)
+        $0.font = Font.semiBold?.withSize(14)
         $0.setKern(-3)
     }
     
@@ -50,7 +50,7 @@ class InstrumentsView: UIView {
     // MARK: - Configure
     private func configureCommonUI() {
         instrumentLabel.text = self.type.rawValue
-        self.layer.cornerRadius = size == .large ? 14 : 10
+        self.layer.cornerRadius = size == .large ? 18 : 14
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 0.5
     }

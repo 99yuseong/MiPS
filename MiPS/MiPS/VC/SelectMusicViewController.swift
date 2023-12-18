@@ -102,7 +102,7 @@ final class SelectMusicViewController: UIViewController {
         
         musicCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(32)
-            make.height.equalTo((56 + 8) * 5)
+            make.height.equalTo((73 + 8) * 5)
             make.trailing.centerY.equalToSuperview()
         }
     }
@@ -171,7 +171,7 @@ extension SelectMusicViewController: UICollectionViewDelegate {
 
 extension SelectMusicViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 56)
+        return CGSize(width: collectionView.frame.width, height: 73)
     }
 }
 

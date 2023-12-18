@@ -15,14 +15,14 @@ class SelectMusicCollectionViewCell: UICollectionViewCell {
     
     private var titleLabel = UILabel().then {
         $0.text = "Tell Me If You Wanna Go Home"
-        $0.font = Font.light?.withSize(14)
+        $0.font = Font.light?.withSize(20)
         $0.setKern(-3)
         $0.textColor = .white
     }
     
     private var singerLabel = UILabel().then {
         $0.text = "Keira Knightley"
-        $0.font = Font.regular?.withSize(10)
+        $0.font = Font.regular?.withSize(14)
         $0.setKern(-3)
         $0.textColor = UIColor(hexCode: "818181", alpha: 1)
     }
@@ -67,14 +67,14 @@ class SelectMusicCollectionViewCell: UICollectionViewCell {
         }
         
         singerLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(-4)
+            make.top.equalTo(titleLabel.snp.bottom)
             make.leading.equalTo(titleLabel)
         }
         
         instrumentStackView.snp.makeConstraints { make in
             make.top.equalTo(singerLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel)
-            make.height.equalTo(20)
+            make.height.equalTo(28)
         }
     }
     
@@ -104,15 +104,15 @@ class SelectMusicCollectionViewCell: UICollectionViewCell {
     func updateUI(index: Int) {
         titleLabel.snp.updateConstraints { make in
             if index == 0 {
-                make.top.equalToSuperview().offset(22)
+                make.top.equalToSuperview().offset(28)
             } else if index == 1 {
-                make.top.equalToSuperview().offset(12)
+                make.top.equalToSuperview().offset(18)
             } else if index == 3 {
+                make.top.equalToSuperview().offset(24)
+            } else if index == 4 {
                 make.top.equalToSuperview().offset(12)
-            } else {
-                make.top.equalToSuperview().offset(2)
             }
-            make.leading.equalToSuperview().offset(abs(abs(index - 2) - 2) * 28)
+            make.leading.equalToSuperview().offset(abs(abs(index - 2) - 2) * 36)
         }
     }
 }

@@ -8,8 +8,12 @@
 import UIKit
 import SnapKit
 import Then
+import SpriteKit
 
 final class PositioningViewController: UIViewController {
+    
+    private var copiedView: InstrumentView?
+    private var lastFrame: CGRect?
     
     // MARK: - UI
     private lazy var menuBtn = IconBtn(of: Icon.menu, color: .white).then {
@@ -25,7 +29,7 @@ final class PositioningViewController: UIViewController {
     
     private var singerLabel = UILabel().then {
         $0.text = "Keira Knightley"
-        $0.textColor = UIColor(hexCode: "818181", alpha: 1)
+        $0.textColor = UIColor(hexCode: "818181")
         $0.font = Font.light?.withSize(14)
         $0.setKern(-3)
     }
@@ -37,6 +41,18 @@ final class PositioningViewController: UIViewController {
     private var headerDivider = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 0.1
+    }
+    
+    private lazy var scene = PositioningScene(size: self.view.bounds.size).then {
+        $0.backgroundColor = .clear
+        $0.scaleMode = .resizeFill
+        $0.yScale = -1
+    }
+    
+    private lazy var skView = SKView().then {
+        $0.ignoresSiblingOrder = true
+        $0.layer.borderWidth = 0
+        $0.presentScene(scene)
     }
     
     private var infoLabel = UILabel().then {
@@ -51,15 +67,6 @@ final class PositioningViewController: UIViewController {
         $0.layer.cornerRadius = 0.1
     }
     
-    private var scrollView = UIScrollView()
-    
-    private lazy var stackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 20
-        $0.distribution = .equalSpacing
-        $0.alignment = .center
-    }
-    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,20 +75,27 @@ final class PositioningViewController: UIViewController {
         configureLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        scene.size = self.view.bounds.size
+        scene.drawInstrumentNode()
+    }
+    
     // MARK: - Configure
     private func configureCommonUI() {
         view.backgroundColor = UIColor(hexCode: "1c1c1c")
-        configureStackView()
     }
     
-    private func configureStackView() {
-        for type in Instruments.allCases {
-            let view = InstrumentsView(type: type, size: .large)
-            stackView.addArrangedSubview(view)
-        }
+    @objc func didTouchDown(sender: UILongPressGestureRecognizer) {
+        let location = view.convert(sender.view!.frame, from: sender.view!.superview)
+        let type = (sender.view as! InstrumentView).type
+        let skSceneCenter = CGPoint(x: location.midX, y: view.bounds.height - location.midY)
+        
+        addNode(for: type, at: skSceneCenter)
     }
     
     private func configureAddViews() {
+        view.addSubview(skView)
         view.addSubview(menuBtn)
         view.addSubview(titleLabel)
         view.addSubview(singerLabel)
@@ -89,8 +103,6 @@ final class PositioningViewController: UIViewController {
         view.addSubview(headerDivider)
         view.addSubview(infoLabel)
         view.addSubview(bottomDivider)
-        view.addSubview(scrollView)
-        scrollView.addSubview(stackView)
     }
     
     private func configureLayout() {
@@ -121,6 +133,10 @@ final class PositioningViewController: UIViewController {
             make.top.equalTo(menuBtn.snp.bottom).offset(8)
         }
         
+        skView.snp.makeConstraints { make in
+            make.top.leading.bottom.trailing.equalToSuperview()
+        }
+        
         infoLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
         }
@@ -130,19 +146,17 @@ final class PositioningViewController: UIViewController {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(infoLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(scrollView.snp.top)
+            make.bottom.equalToSuperview().offset(-90)
         }
-        
-        scrollView.snp.makeConstraints { make in
-            make.height.equalTo(72)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
-        }
-        
-        stackView.snp.makeConstraints { make in
-            make.height.equalToSuperview()
-            make.leading.equalTo(scrollView).offset(32)
-        }
+    }
+}
+
+extension PositioningViewController {
+    func addNode(for type: Instruments, at location: CGPoint) {
+        let node = InstrumentNode(type: type)
+        node.position = location
+        scene.addChild(node)
+        scene.selectedNode = node
     }
 }
 

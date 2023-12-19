@@ -1,5 +1,5 @@
 //
-//  InstrumentsView.swift
+//  InstrumentView.swift
 //  MiPS
 //
 //  Created by 남유성 on 12/16/23.
@@ -14,10 +14,10 @@ enum InstrumentViewSize {
     case small
 }
 
-class InstrumentsView: UIView {
+class InstrumentView: UIView {
     
-    private let type: Instruments
-    private let size: InstrumentViewSize
+    let type: Instruments
+    let size: InstrumentViewSize
     private var width: CGFloat {
         switch size {
         case .large:
@@ -50,6 +50,7 @@ class InstrumentsView: UIView {
     // MARK: - Configure
     private func configureCommonUI() {
         instrumentLabel.text = self.type.rawValue
+        instrumentLabel.font = size == .large ? Font.semiBold?.withSize(18) : Font.semiBold?.withSize(14)
         self.layer.cornerRadius = size == .large ? 18 : 14
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 0.5
@@ -69,5 +70,4 @@ class InstrumentsView: UIView {
         }
     }
 }
-
 

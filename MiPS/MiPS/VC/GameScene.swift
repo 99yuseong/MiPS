@@ -13,7 +13,6 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         /* Setup your scene here */
-        backgroundColor = .white
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 
 		let moveJoystickHiddenArea = TLAnalogJoystickHiddenArea(rect: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))

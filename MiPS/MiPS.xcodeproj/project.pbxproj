@@ -31,12 +31,14 @@
 		427CAFC42B2D596700EE5EEE /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFC32B2D596700EE5EEE /* UIViewController+.swift */; };
 		427CAFC62B2D62A500EE5EEE /* SelectMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFC52B2D62A500EE5EEE /* SelectMusicViewController.swift */; };
 		427CAFCB2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCA2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift */; };
-		427CAFCD2B2D717E00EE5EEE /* InstrumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCC2B2D717E00EE5EEE /* InstrumentsView.swift */; };
+		427CAFCD2B2D717E00EE5EEE /* InstrumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCC2B2D717E00EE5EEE /* InstrumentView.swift */; };
 		427CAFCF2B2ED58E00EE5EEE /* Instruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFCE2B2ED58E00EE5EEE /* Instruments.swift */; };
 		427CAFD52B2EFED100EE5EEE /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFD42B2EFED100EE5EEE /* Music.swift */; };
 		427CAFD72B2F80D900EE5EEE /* PositioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFD62B2F80D900EE5EEE /* PositioningViewController.swift */; };
 		427CAFDB2B2F835200EE5EEE /* icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFDA2B2F835200EE5EEE /* icons.swift */; };
 		427CAFDD2B2F83C900EE5EEE /* IconBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFDC2B2F83C900EE5EEE /* IconBtn.swift */; };
+		427CAFDF2B30390100EE5EEE /* InstrumentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFDE2B30390100EE5EEE /* InstrumentNode.swift */; };
+		427CAFE12B312A1E00EE5EEE /* PositioningScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFE02B312A1E00EE5EEE /* PositioningScene.swift */; };
 		42B1040F2AD6CA2400FABEE2 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 42B1040E2AD6CA2400FABEE2 /* Starscream */; };
 		42B104112AD6CA3100FABEE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B104102AD6CA3100FABEE2 /* NetworkService.swift */; };
 		42B5FED02B2993FF008B2B38 /* ConnectHPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B5FECF2B2993FF008B2B38 /* ConnectHPViewController.swift */; };
@@ -79,12 +81,14 @@
 		427CAFC32B2D596700EE5EEE /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		427CAFC52B2D62A500EE5EEE /* SelectMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMusicViewController.swift; sourceTree = "<group>"; };
 		427CAFCA2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMusicCollectionViewCell.swift; sourceTree = "<group>"; };
-		427CAFCC2B2D717E00EE5EEE /* InstrumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsView.swift; sourceTree = "<group>"; };
+		427CAFCC2B2D717E00EE5EEE /* InstrumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentView.swift; sourceTree = "<group>"; };
 		427CAFCE2B2ED58E00EE5EEE /* Instruments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruments.swift; sourceTree = "<group>"; };
 		427CAFD42B2EFED100EE5EEE /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		427CAFD62B2F80D900EE5EEE /* PositioningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositioningViewController.swift; sourceTree = "<group>"; };
 		427CAFDA2B2F835200EE5EEE /* icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = icons.swift; sourceTree = "<group>"; };
 		427CAFDC2B2F83C900EE5EEE /* IconBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconBtn.swift; sourceTree = "<group>"; };
+		427CAFDE2B30390100EE5EEE /* InstrumentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentNode.swift; sourceTree = "<group>"; };
+		427CAFE02B312A1E00EE5EEE /* PositioningScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositioningScene.swift; sourceTree = "<group>"; };
 		42B104102AD6CA3100FABEE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42B5FECF2B2993FF008B2B38 /* ConnectHPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectHPViewController.swift; sourceTree = "<group>"; };
 		42BB8E292B19C0E400BAF846 /* PlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingData.swift; sourceTree = "<group>"; };
@@ -151,8 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				427CAFCA2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift */,
-				427CAFCC2B2D717E00EE5EEE /* InstrumentsView.swift */,
+				427CAFCC2B2D717E00EE5EEE /* InstrumentView.swift */,
 				427CAFDC2B2F83C900EE5EEE /* IconBtn.swift */,
+				427CAFDE2B30390100EE5EEE /* InstrumentNode.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				42B5FECF2B2993FF008B2B38 /* ConnectHPViewController.swift */,
 				427CAFC52B2D62A500EE5EEE /* SelectMusicViewController.swift */,
 				427CAFD62B2F80D900EE5EEE /* PositioningViewController.swift */,
+				427CAFE02B312A1E00EE5EEE /* PositioningScene.swift */,
 				42E1BE3C2ADC40C200D89E70 /* GameScene.swift */,
 				42F8C7022AB9E81900A65B4D /* ViewController.swift */,
 			);
@@ -374,8 +380,9 @@
 				4251BCDA2AD7C2FC005C1171 /* HeadRotation.swift in Sources */,
 				427CAFAB2B2ABB8E00EE5EEE /* UIColor+.swift in Sources */,
 				427CAFC62B2D62A500EE5EEE /* SelectMusicViewController.swift in Sources */,
-				427CAFCD2B2D717E00EE5EEE /* InstrumentsView.swift in Sources */,
+				427CAFCD2B2D717E00EE5EEE /* InstrumentView.swift in Sources */,
 				42E1BE3D2ADC40C200D89E70 /* GameScene.swift in Sources */,
+				427CAFDF2B30390100EE5EEE /* InstrumentNode.swift in Sources */,
 				42C8656F2AFE76F9001D39DE /* FileExt.swift in Sources */,
 				427CAFD52B2EFED100EE5EEE /* Music.swift in Sources */,
 				42E1BE3B2ADC40A600D89E70 /* TLAnalogJoystick.swift in Sources */,
@@ -385,6 +392,7 @@
 				427CAFB92B2AC28B00EE5EEE /* UILabel+.swift in Sources */,
 				4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */,
 				427CAFCB2B2D705500EE5EEE /* SelectMusicCollectionViewCell.swift in Sources */,
+				427CAFE12B312A1E00EE5EEE /* PositioningScene.swift in Sources */,
 				421B4FE22AF0CFF900DF8DE3 /* Double+.swift in Sources */,
 				4251BCD32AD6FFC3005C1171 /* Global.swift in Sources */,
 				42BB8E2A2B19C0E400BAF846 /* PlayingData.swift in Sources */,

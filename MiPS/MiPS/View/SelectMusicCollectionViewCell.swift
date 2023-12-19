@@ -83,7 +83,7 @@ class SelectMusicCollectionViewCell: UICollectionViewCell {
         singerLabel.text = music.singer
         
         for instrument in music.instruments {
-            let view = InstrumentsView(type: instrument, size: .small)
+            let view = InstrumentView(type: instrument, size: .small)
             instrumentStackView.addArrangedSubview(view)
         }
     }

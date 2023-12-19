@@ -78,7 +78,7 @@ final class PositioningViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scene.size = self.view.bounds.size
-        scene.drawInstrumentNode()
+        scene.drawInstrumentNode(Instruments.allCases)
     }
     
     // MARK: - Configure

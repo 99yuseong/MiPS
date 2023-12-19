@@ -10,9 +10,9 @@ import Then
 
 class InstrumentNode: SKSpriteNode {
     
+    static let size: CGFloat = 36
     let type: Instruments
-    private let radius: CGFloat = 18
-    
+
     private lazy var typeLabel = SKLabelNode().then {
         $0.text = self.type.rawValue
         $0.fontName = Montserrat.semiBold.rawValue
@@ -31,7 +31,7 @@ class InstrumentNode: SKSpriteNode {
     
     init(type: Instruments) {
         self.type = type
-        super.init(texture: nil, color: .clear, size: CGSize(width: radius * 2, height: radius * 2))
+        super.init(texture: nil, color: .clear, size: CGSize(width: InstrumentNode.size, height: InstrumentNode.size))
         
         self.name = "InstrumentNode"
         

@@ -12,9 +12,6 @@ import SpriteKit
 
 final class PositioningViewController: UIViewController {
     
-    private var copiedView: InstrumentView?
-    private var lastFrame: CGRect?
-    
     // MARK: - UI
     private lazy var menuBtn = IconBtn(of: Icon.menu, color: .white).then {
         $0.addTarget(self, action: #selector(selectMusic), for: .touchUpInside)
@@ -78,7 +75,8 @@ final class PositioningViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scene.size = self.view.bounds.size
-        scene.drawInstrumentNode(Instruments.allCases)
+        scene.addUserNode()
+        scene.addInstrumentNodes(Instruments.allCases)
     }
     
     // MARK: - Configure
@@ -146,7 +144,7 @@ final class PositioningViewController: UIViewController {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(infoLabel.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-90)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
         }
     }
 }

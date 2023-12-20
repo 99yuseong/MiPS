@@ -18,12 +18,12 @@ class PositioningScene: SKScene {
     var selectedNode: InstrumentNode?
     private var exceptNodes: [InstrumentNode] = []
     private var spotlightColors: [SKColor] = [
-        SKColor.init(hexCode: "FF4141", alpha: 0.2),
-        SKColor.init(hexCode: "FFF500", alpha: 0.2),
-        SKColor.init(hexCode: "00BE70", alpha: 0.2),
-        SKColor.init(hexCode: "0A05FF", alpha: 0.2),
-        SKColor.init(hexCode: "9747FF", alpha: 0.2),
-        SKColor.init(hexCode: "FFFFFF", alpha: 0.2)
+        SKColor.init(hexCode: "FF6EC7", alpha: 0.2),
+        SKColor.init(hexCode: "FF073A", alpha: 0.2),
+        SKColor.init(hexCode: "FFFF00", alpha: 0.2),
+        SKColor.init(hexCode: "39FF14", alpha: 0.2),
+        SKColor.init(hexCode: "4D4DFF", alpha: 0.2),
+        SKColor.init(hexCode: "9400D3", alpha: 0.2)
     ]
     
     weak var positioningDelegate: PositioningSceneDelegate?
@@ -119,8 +119,8 @@ class PositioningScene: SKScene {
         guard let node = selectedNode else { return }
         
         let location = touch.location(in: self)
-        
         if node.position.y >= 150 && node.position.y <= 720 {
+            node.position = location
             node.addSectionCircle(at: location, from: CGPoint(x: frame.midX, y: frame.midY))
         }
         rearrangeInstrumentNodes()
@@ -265,5 +265,26 @@ extension PositioningScene {
             exceptNode.resetColor()
         }
         changeBgColor(to: UIColor.init(hexCode: "1c1c1c"))
+    }
+}
+
+extension PositioningScene {
+    func drawHeadRotation(to rot: HeadRotation) {
+        userNode.drawHeadRotation(to: rot)
+    }
+    
+    func hideHeadRotation() {
+        userNode.hideHeadRotation()
+    }
+    
+    func calSoundSources() -> [SoundSource] {
+        exceptNodes.map { relativePosition(of: $0).calSoundSource(of: $0.type) }
+    }
+    
+    func relativePosition(of node: SKNode) -> CGPoint {
+        let centerA = CGPoint(x: userNode.frame.midX, y: userNode.frame.midY)
+        let centerB = CGPoint(x: node.frame.midX, y: node.frame.midY)
+
+        return CGPoint(x: centerB.x - centerA.x, y: centerB.y - centerA.y)
     }
 }

@@ -18,7 +18,7 @@ final class PositioningViewController: UIViewController {
     // MARK: - UI
     private var rollLabel = UILabel().then {
         $0.text = "Roll: 0.0"
-        $0.font = UIFont.systemFont(ofSize: 10)
+        $0.font = UIFont.systemFont(ofSize: 8)
         $0.textColor = .white
     }
     
@@ -109,6 +109,7 @@ final class PositioningViewController: UIViewController {
         configureAddViews()
         configureLayout()
         HPMotionService.shared.delegate = self
+        HPMotionService.shared.startUpdate()
         audioService.delegate = self
     }
     
@@ -121,7 +122,7 @@ final class PositioningViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        audioService.connectServer()
+//        audioService.connectServer()
     }
     
     // MARK: - Configure
@@ -313,6 +314,7 @@ extension PositioningViewController: HPMotionDelegate {
     
     func didHeadPhoneDisconnected() {
         updateHeadPhoneLabel(false)
+        scene.hideHeadRotation()
     }
     
     func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
@@ -320,6 +322,14 @@ extension PositioningViewController: HPMotionDelegate {
 //            audioService.sendPlayingData(headRotation)
 //            lastSentHeadRot = headRotation
 //        }
+        scene.drawHeadRotation(to: headRotation)
+        let soundSources = scene.calSoundSources()
+        soundSources.map {
+            print($0.type)
+            print($0.pi)
+            print($0.theta)
+            print($0.r)
+        }
         audioService.sendPlayingData(headRotation)
         updateHeadRotaionLabel(headRotation)
     }
@@ -331,7 +341,7 @@ extension PositioningViewController: HPMotionDelegate {
     private func updateHeadRotaionLabel(_ headRotation: HeadRotation) {
         rollLabel.text = "Roll: \(headRotation.roll)"
         pitchLabel.text = "Pitch: \(headRotation.pitch)"
-        yawLabel.text = "Pitch: \(headRotation.yaw)"
+        yawLabel.text = "yaw: \(headRotation.yaw)"
     }
 }
 

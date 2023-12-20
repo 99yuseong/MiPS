@@ -8,11 +8,15 @@
 import Foundation
 
 class SoundSource: Codable {
+    var type: String
     var theta: Float
     var pi: Float
+    var r: Float
     
-    init(theta: Float, pi: Float) {
+    init(type: Instruments, theta: Float, pi: Float, r: Float) {
+        self.type = type.rawValue
         self.theta = theta
         self.pi = pi
+        self.r = r
     }
 }

@@ -16,6 +16,7 @@
 		4251BCDA2AD7C2FC005C1171 /* HeadRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCD92AD7C2FC005C1171 /* HeadRotation.swift */; };
 		4251BCDC2AD7C582005C1171 /* Float+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCDB2AD7C582005C1171 /* Float+.swift */; };
 		4251BCDE2AD7D309005C1171 /* SoundSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251BCDD2AD7D309005C1171 /* SoundSource.swift */; };
+		425F24562B3309EB00C154D0 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425F24552B3309EB00C154D0 /* CGPoint+.swift */; };
 		427CAFAB2B2ABB8E00EE5EEE /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFAA2B2ABB8E00EE5EEE /* UIColor+.swift */; };
 		427CAFB72B2ABF0300EE5EEE /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFB62B2ABF0300EE5EEE /* FontStyle.swift */; };
 		427CAFB92B2AC28B00EE5EEE /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAFB82B2AC28B00EE5EEE /* UILabel+.swift */; };
@@ -67,6 +68,7 @@
 		4251BCD92AD7C2FC005C1171 /* HeadRotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadRotation.swift; sourceTree = "<group>"; };
 		4251BCDB2AD7C582005C1171 /* Float+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+.swift"; sourceTree = "<group>"; };
 		4251BCDD2AD7D309005C1171 /* SoundSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSource.swift; sourceTree = "<group>"; };
+		425F24552B3309EB00C154D0 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
 		427CAFAA2B2ABB8E00EE5EEE /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		427CAFAD2B2ABDD200EE5EEE /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		427CAFAE2B2ABDD200EE5EEE /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				427CAFAA2B2ABB8E00EE5EEE /* UIColor+.swift */,
 				427CAFC32B2D596700EE5EEE /* UIViewController+.swift */,
 				427CAFB82B2AC28B00EE5EEE /* UILabel+.swift */,
+				425F24552B3309EB00C154D0 /* CGPoint+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				4251BCDE2AD7D309005C1171 /* SoundSource.swift in Sources */,
 				42F8C71C2AB9FDB000A65B4D /* AudioService.swift in Sources */,
 				42C865712AFE770D001D39DE /* AudioBuffer.swift in Sources */,
+				425F24562B3309EB00C154D0 /* CGPoint+.swift in Sources */,
 				42F8C7032AB9E81900A65B4D /* ViewController.swift in Sources */,
 				427CAFD72B2F80D900EE5EEE /* PositioningViewController.swift in Sources */,
 				42F8C6FF2AB9E81900A65B4D /* AppDelegate.swift in Sources */,

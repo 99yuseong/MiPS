@@ -12,6 +12,10 @@ extension Double {
         return self * 180 / .pi
     }
     
+    func toRadians() -> Double {
+        return self * .pi / 180
+    }
+    
     func roundToFirst() -> Double {
         (self * 10).rounded() / 10
     }

@@ -11,13 +11,24 @@ import Then
 protocol PositioningSceneDelegate: NSObjectProtocol {
     func startPositioning()
     func resetPositioning()
-//    func endPositioning()
 }
 
 class PositioningScene: SKScene {
     
+    var selectedNode: InstrumentNode?
+    private var exceptNodes: [InstrumentNode] = []
+    private var spotlightColors: [SKColor] = [
+        SKColor.init(hexCode: "FF4141", alpha: 0.2),
+        SKColor.init(hexCode: "FFF500", alpha: 0.2),
+        SKColor.init(hexCode: "00BE70", alpha: 0.2),
+        SKColor.init(hexCode: "0A05FF", alpha: 0.2),
+        SKColor.init(hexCode: "9747FF", alpha: 0.2),
+        SKColor.init(hexCode: "FFFFFF", alpha: 0.2)
+    ]
+    
     weak var positioningDelegate: PositioningSceneDelegate?
     
+    // MARK: - UI
     private var userNode = UserNode()
     
     private var infoNode = SKLabelNode().then {
@@ -39,9 +50,11 @@ class PositioningScene: SKScene {
         $0.lineWidth = 0.1
     }
     
-    var selectedNode: InstrumentNode?
-    
-    private var exceptNodes: [InstrumentNode] = []
+    private lazy var backgroundNode = SKSpriteNode().then {
+        $0.color = UIColor.init(hexCode: "1c1c1c")
+        $0.position = CGPoint(x: frame.midX, y: frame.midY)
+        $0.zPosition = -1
+    }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -80,6 +93,8 @@ class PositioningScene: SKScene {
                 exceptNodes.append(node)
                 rearrangeInstrumentNodes()
                 node.addSectionCircle(at: location, from: CGPoint(x: frame.midX, y: frame.midY), true)
+            } else {
+                node.reset()
             }
         }
     }
@@ -105,7 +120,9 @@ class PositioningScene: SKScene {
         
         let location = touch.location(in: self)
         
-        node.addSectionCircle(at: location, from: CGPoint(x: frame.midX, y: frame.midY))
+        if node.position.y >= 150 && node.position.y <= 720 {
+            node.addSectionCircle(at: location, from: CGPoint(x: frame.midX, y: frame.midY))
+        }
         rearrangeInstrumentNodes()
         selectedNode = nil
     }
@@ -113,6 +130,7 @@ class PositioningScene: SKScene {
 
 extension PositioningScene {
     func setUp() {
+        addBgNode()
         addUserNode()
         addInfoNode()
     }
@@ -126,6 +144,12 @@ extension PositioningScene {
         infoNode.position = CGPoint(x: frame.midX, y: 100)
         addChild(infoNode)
         addChild(lineNode)
+    }
+    
+    func addBgNode() {
+        backgroundNode.size = size
+        backgroundNode.position = CGPoint(x: frame.midX, y: frame.midY)
+        addChild(backgroundNode)
     }
     
     func addInstrumentNodes(_ instruments: [Instruments]) {
@@ -194,6 +218,7 @@ extension PositioningScene {
     func resetAll() {
         resetNodes()
         resetInfoNodes()
+        resetBgColor()
     }
     
     func resetNodes() {
@@ -202,12 +227,43 @@ extension PositioningScene {
         for node in children {
             if let node = node as? InstrumentNode {
                 node.reset()
+                node.resetColor()
             }
         }
     }
     
     func resetInfoNodes() {
         infoNode.position = CGPoint(x: frame.midX, y: 100)
+        infoNode.text = "Drag and Position Instruments"
         lineNode.position = CGPoint(x: 0, y: 0)
+    }
+    
+    func resetBgColor() {
+        changeBgColor(to: UIColor.init(hexCode: "1c1c1c"))
+    }
+    
+    func changeBgColor(to color: UIColor) {
+        let colorAction = SKAction.colorize(with: color, colorBlendFactor: 1.0, duration: 0.5)
+        backgroundNode.run(colorAction)
+    }
+}
+
+extension PositioningScene {
+    func isMusicAvailable() -> Bool {
+        return exceptNodes.count == 6
+    }
+    
+    func playMusic() {
+        for (i, exceptNode) in self.exceptNodes.enumerated() {
+            exceptNode.changeColor(to: spotlightColors[i])
+        }
+        changeBgColor(to: UIColor.init(hexCode: "000000"))
+    }
+    
+    func pauseMusic() {
+        for exceptNode in self.exceptNodes {
+            exceptNode.resetColor()
+        }
+        changeBgColor(to: UIColor.init(hexCode: "1c1c1c"))
     }
 }

@@ -72,4 +72,14 @@ extension InstrumentNode {
         
         return sqrt((xDist * xDist) + (yDist * yDist))
     }
+    
+    func changeColor(to color: SKColor) {
+        aroundCircle.lineWidth = 0
+        aroundCircle.fillColor = color
+    }
+    
+    func resetColor() {
+        aroundCircle.lineWidth = 0.5
+        aroundCircle.fillColor = .clear
+    }
 }

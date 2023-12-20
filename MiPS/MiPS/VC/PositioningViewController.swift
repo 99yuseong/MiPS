@@ -12,7 +12,34 @@ import SpriteKit
 
 final class PositioningViewController: UIViewController {
     
+    private let audioService = AudioService()
+    private var lastSentHeadRot = HeadRotation(roll: 0, pitch: 0, yaw: 0)
+    
     // MARK: - UI
+    private var rollLabel = UILabel().then {
+        $0.text = "Roll: 0.0"
+        $0.font = UIFont.systemFont(ofSize: 10)
+        $0.textColor = .white
+    }
+    
+    private var pitchLabel = UILabel().then {
+        $0.text = "Pitch: 0.0"
+        $0.font = UIFont.systemFont(ofSize: 10)
+        $0.textColor = .white
+    }
+        
+    private var yawLabel = UILabel().then {
+        $0.text = "Yaw: 0.0"
+        $0.font = UIFont.systemFont(ofSize: 10)
+        $0.textColor = .white
+    }
+    
+    private var headphoneLabel = UILabel().then {
+        $0.text = "HeadPhone 🔴"
+        $0.font = UIFont.systemFont(ofSize: 10)
+        $0.textColor = .white
+    }
+    
     private lazy var menuBtn = IconBtn(of: Icon.menu, color: .white).then {
         $0.addTarget(self, action: #selector(selectMusic), for: .touchUpInside)
     }
@@ -38,6 +65,11 @@ final class PositioningViewController: UIViewController {
     
     private lazy var playBtn = IconBtn(of: Icon.play, color: .white).then {
         $0.addTarget(self, action: #selector(playMusic), for: .touchUpInside)
+    }
+    
+    private lazy var pauseBtn = IconBtn(of: Icon.pause, color: .white).then {
+        $0.isHidden = true
+        $0.addTarget(self, action: #selector(pauseMusic), for: .touchUpInside)
     }
     
     private var headerDivider = UIView().then {
@@ -76,6 +108,8 @@ final class PositioningViewController: UIViewController {
         configureCommonUI()
         configureAddViews()
         configureLayout()
+        HPMotionService.shared.delegate = self
+        audioService.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +117,11 @@ final class PositioningViewController: UIViewController {
         scene.size = self.view.bounds.size
         scene.setUp()
         scene.addInstrumentNodes(Instruments.allCases)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        audioService.connectServer()
     }
     
     // MARK: - Configure
@@ -105,9 +144,16 @@ final class PositioningViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(singerLabel)
         view.addSubview(playBtn)
+        view.addSubview(pauseBtn)
         view.addSubview(headerDivider)
         view.addSubview(infoLabel)
         view.addSubview(bottomDivider)
+        
+        view.addSubview(rollLabel)
+        view.addSubview(pitchLabel)
+        view.addSubview(yawLabel)
+        view.addSubview(headphoneLabel)
+        view.addSubview(playBtn)
     }
     
     private func configureLayout() {
@@ -136,6 +182,11 @@ final class PositioningViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-10)
         }
         
+        pauseBtn.snp.makeConstraints { make in
+            make.top.equalTo(menuBtn)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
         headerDivider.snp.makeConstraints { make in
             make.height.equalTo(0.2)
             make.leading.equalToSuperview().offset(20)
@@ -147,17 +198,25 @@ final class PositioningViewController: UIViewController {
             make.top.leading.bottom.trailing.equalToSuperview()
         }
         
-//        infoLabel.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//        }
+        rollLabel.snp.makeConstraints { make in
+            make.top.equalTo(headerDivider.snp.bottom).offset(16)
+            make.leading.equalTo(headphoneLabel)
+        }
         
-//        bottomDivider.snp.makeConstraints { make in
-//            make.height.equalTo(0.2)
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(infoLabel.snp.bottom).offset(10)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
-//        }
+        pitchLabel.snp.makeConstraints { make in
+            make.top.equalTo(rollLabel.snp.bottom).offset(2)
+            make.leading.equalTo(headphoneLabel)
+        }
+        
+        yawLabel.snp.makeConstraints { make in
+            make.top.equalTo(pitchLabel.snp.bottom).offset(2)
+            make.leading.equalTo(headphoneLabel)
+        }
+        
+        headphoneLabel.snp.makeConstraints { make in
+            make.top.equalTo(yawLabel.snp.bottom).offset(2)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
     }
 }
 
@@ -176,12 +235,29 @@ extension PositioningViewController {
     }
     
     @objc func playMusic() {
-        showToast(message: "Play")
+        guard scene.isMusicAvailable() else {
+            showToast(message: "Drag and Position Instruments")
+            return
+        }
+//        audioService.play()
+        pauseBtn.isHidden = false
+        playBtn.isHidden = true
+        scene.playMusic()
+    }
+    
+    @objc func pauseMusic() {
+//        audioService.pause()
+        playBtn.isHidden = false
+        pauseBtn.isHidden = true
+        scene.pauseMusic()
     }
     
     @objc func resetScene() {
         scene.resetAll()
         resetPositioning()
+        pauseBtn.isHidden = true
+        playBtn.isHidden = false
+        showToast(message: "음악 리셋해야함!!!")
     }
 }
 
@@ -194,6 +270,68 @@ extension PositioningViewController: PositioningSceneDelegate {
     func resetPositioning() {
         resetBtn.isHidden = true
         menuBtn.isHidden = false
+    }
+}
+
+extension PositioningViewController: AudioServiceDelegate {
+    func willAudioPlayOnServer() {
+        NetworkService.shared.setSocketEvent { [weak self] event in
+            guard let self = self else { return }
+            
+            switch event {
+            case .text(let jsonString):
+                self.audioService.loadBufferSemaphore(jsonString)
+            default:
+                break
+            }
+        }
+        
+        NetworkService.shared.connectSocket()
+    }
+    
+    func willAudioEndOnServer() {
+        //
+    }
+    
+    func didAudioPlayOnServer() {
+        //
+    }
+    
+    func didAudioEndOnServer() {
+        NetworkService.shared.disconnectSocket()
+    }
+}
+
+extension PositioningViewController: HPMotionDelegate {
+    func isHeadPhoneAvailable(_ available: Bool) {
+        headphoneLabel.text = "HeadPhone 🔴"
+    }
+    
+    func didHeadPhoneConnected() {
+        updateHeadPhoneLabel(true)
+    }
+    
+    func didHeadPhoneDisconnected() {
+        updateHeadPhoneLabel(false)
+    }
+    
+    func didHeadPhoneMotionUpdated(_ headRotation: HeadRotation) {
+//        if lastSentHeadRot.differOver(degree: 5, headRot: headRotation) {
+//            audioService.sendPlayingData(headRotation)
+//            lastSentHeadRot = headRotation
+//        }
+        audioService.sendPlayingData(headRotation)
+        updateHeadRotaionLabel(headRotation)
+    }
+    
+    private func updateHeadPhoneLabel(_ connected: Bool) {
+        headphoneLabel.text = connected ? "HeadPhone 🟢" : "HeadPhone 🔴"
+    }
+    
+    private func updateHeadRotaionLabel(_ headRotation: HeadRotation) {
+        rollLabel.text = "Roll: \(headRotation.roll)"
+        pitchLabel.text = "Pitch: \(headRotation.pitch)"
+        yawLabel.text = "Pitch: \(headRotation.yaw)"
     }
 }
 

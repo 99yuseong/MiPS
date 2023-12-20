@@ -17,6 +17,11 @@ final class PositioningViewController: UIViewController {
         $0.addTarget(self, action: #selector(selectMusic), for: .touchUpInside)
     }
     
+    private lazy var resetBtn = IconBtn(of: Icon.reset, color: .white).then {
+        $0.isHidden = true
+        $0.addTarget(self, action: #selector(resetScene), for: .touchUpInside)
+    }
+    
     private var titleLabel = UILabel().then {
         $0.text = "Tell Me If You Wanna Go Home"
         $0.textColor = .white
@@ -41,9 +46,10 @@ final class PositioningViewController: UIViewController {
     }
     
     private lazy var scene = PositioningScene(size: self.view.bounds.size).then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = UIColor(hexCode: "1c1c1c")
         $0.scaleMode = .resizeFill
         $0.yScale = -1
+        $0.positioningDelegate = self
     }
     
     private lazy var skView = SKView().then {
@@ -75,7 +81,7 @@ final class PositioningViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scene.size = self.view.bounds.size
-        scene.addUserNode()
+        scene.setUp()
         scene.addInstrumentNodes(Instruments.allCases)
     }
     
@@ -95,6 +101,7 @@ final class PositioningViewController: UIViewController {
     private func configureAddViews() {
         view.addSubview(skView)
         view.addSubview(menuBtn)
+        view.addSubview(resetBtn)
         view.addSubview(titleLabel)
         view.addSubview(singerLabel)
         view.addSubview(playBtn)
@@ -109,9 +116,14 @@ final class PositioningViewController: UIViewController {
             make.leading.equalToSuperview().offset(10)
         }
         
+        resetBtn.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
+            make.leading.equalToSuperview().offset(10)
+        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(menuBtn.snp.trailing).offset(8)
-            make.top.equalTo(menuBtn).offset(2.5)
+            make.leading.equalToSuperview().offset(62)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(14.5)
         }
         
         singerLabel.snp.makeConstraints { make in
@@ -135,17 +147,17 @@ final class PositioningViewController: UIViewController {
             make.top.leading.bottom.trailing.equalToSuperview()
         }
         
-        infoLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-        }
+//        infoLabel.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//        }
         
-        bottomDivider.snp.makeConstraints { make in
-            make.height.equalTo(0.2)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(infoLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
-        }
+//        bottomDivider.snp.makeConstraints { make in
+//            make.height.equalTo(0.2)
+//            make.leading.equalToSuperview().offset(20)
+//            make.trailing.equalToSuperview().offset(-20)
+//            make.top.equalTo(infoLabel.snp.bottom).offset(10)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
+//        }
     }
 }
 
@@ -165,6 +177,23 @@ extension PositioningViewController {
     
     @objc func playMusic() {
         showToast(message: "Play")
+    }
+    
+    @objc func resetScene() {
+        scene.resetAll()
+        resetPositioning()
+    }
+}
+
+extension PositioningViewController: PositioningSceneDelegate {
+    func startPositioning() {
+        resetBtn.isHidden = false
+        menuBtn.isHidden = true
+    }
+    
+    func resetPositioning() {
+        resetBtn.isHidden = true
+        menuBtn.isHidden = false
     }
 }
 

@@ -6,11 +6,38 @@
 //
 
 import SpriteKit
+import Then
+
+protocol PositioningSceneDelegate: NSObjectProtocol {
+    func startPositioning()
+    func resetPositioning()
+//    func endPositioning()
+}
 
 class PositioningScene: SKScene {
     
+    weak var positioningDelegate: PositioningSceneDelegate?
     
     private var userNode = UserNode()
+    
+    private var infoNode = SKLabelNode().then {
+        $0.text = "Drag and Position Instruments"
+        $0.fontName = Montserrat.regular.rawValue
+        $0.fontSize = 16
+        $0.fontColor = SKColor.white
+        $0.horizontalAlignmentMode = .center
+        $0.verticalAlignmentMode = .center
+    }
+    
+    private lazy var lineNode = SKShapeNode().then {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 20, y: 80))
+        path.addLine(to: CGPoint(x: self.frame.maxX - 20, y: 80))
+
+        $0.strokeColor = UIColor.white
+        $0.path = path.cgPath
+        $0.lineWidth = 0.1
+    }
     
     var selectedNode: InstrumentNode?
     
@@ -58,9 +85,23 @@ class PositioningScene: SKScene {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first,
-              let node = selectedNode
-        else { return }
+        guard let touch = touches.first else { return }
+              
+        if exceptNodes.count == 1 {
+            positioningDelegate?.startPositioning()
+        }
+        
+        if exceptNodes.count == 0 {
+            positioningDelegate?.resetPositioning()
+        }
+        
+        if exceptNodes.count == 6 {
+            moveInfoNode(isUp: false)
+        } else {
+            moveInfoNode(isUp: true)
+        }
+    
+        guard let node = selectedNode else { return }
         
         let location = touch.location(in: self)
         
@@ -71,9 +112,20 @@ class PositioningScene: SKScene {
 }
 
 extension PositioningScene {
+    func setUp() {
+        addUserNode()
+        addInfoNode()
+    }
+    
     func addUserNode() {
         userNode.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(userNode)
+    }
+    
+    func addInfoNode() {
+        infoNode.position = CGPoint(x: frame.midX, y: 100)
+        addChild(infoNode)
+        addChild(lineNode)
     }
     
     func addInstrumentNodes(_ instruments: [Instruments]) {
@@ -91,11 +143,6 @@ extension PositioningScene {
             node.position = CGPoint(x: xPosition, y: yPosition)
             addChild(node)
         }
-    }
-    
-    func resetNodes() {
-        exceptNodes = []
-        rearrangeInstrumentNodes()
     }
     
     func rearrangeInstrumentNodes() {
@@ -119,10 +166,48 @@ extension PositioningScene {
             node.run(moveAction)
         }
     }
-}
-
-extension PositioningScene {
-    private func distBtwNodes() {
+    
+    func moveInfoNode(isUp: Bool) {
+        var yPos: CGFloat
         
+        if lineNode.frame.midY >= 79 {
+            yPos = isUp ? 0 : -60
+        } else {
+            yPos = isUp ? 60 : 0
+        }
+        
+        if !isUp {
+            infoNode.text = "Tap Play Buttons"
+        } else {
+            infoNode.text = "Drag and Position Instruments"
+        }
+        
+        let moveAction = SKAction.moveBy(
+            x: 0,
+            y: yPos,
+            duration: 0.2
+        )
+        infoNode.run(moveAction)
+        lineNode.run(moveAction)
+    }
+    
+    func resetAll() {
+        resetNodes()
+        resetInfoNodes()
+    }
+    
+    func resetNodes() {
+        exceptNodes = []
+        rearrangeInstrumentNodes()
+        for node in children {
+            if let node = node as? InstrumentNode {
+                node.reset()
+            }
+        }
+    }
+    
+    func resetInfoNodes() {
+        infoNode.position = CGPoint(x: frame.midX, y: 100)
+        lineNode.position = CGPoint(x: 0, y: 0)
     }
 }

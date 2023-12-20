@@ -55,7 +55,7 @@ extension InstrumentNode {
     func addSectionCircle(at location: CGPoint, from center: CGPoint, _ isActive: Bool = false) {
         aroundCircle.removeFromParent()
         
-        aroundCircle.strokeColor = isActive ? SKColor.white.withAlphaComponent(0.8) : SKColor.init(hexCode: "555555", alpha: 0.5)
+        aroundCircle.strokeColor = isActive ? SKColor.white.withAlphaComponent(0.8) : SKColor.init(hexCode: "555555", alpha: 0.8)
         
         let radius = distBtwPoints(location, center)
         aroundCircle.path = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: 0, endAngle: 2 * .pi, clockwise: true).cgPath
